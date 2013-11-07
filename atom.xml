@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[Yijing's Blog]]></title>
+  <subtitle><![CDATA[Full-Stack Developer, Hackathon Lover]]></subtitle>
+  <link href="http://yijingbai.github.io/yijingblog/atom.xml" rel="self"/>
+  <link href="http://yijingbai.github.io/yijingblog"/>
+  <updated>2013-11-07T13:16:11.805Z</updated>
+  <id>http://yijingbai.github.io/yijingblog/</id>
+  <author>
+    <name><![CDATA[YiJing Bai]]></name>
+  </author>
+  <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[Hexo 使用配置]]></title>
+    <link href="http://yijingbai.github.io/yijingblog/2013/11/07/hexo-使用配置/"/>
+    <id>http://yijingbai.github.io/yijingblog/2013/11/07/hexo-使用配置/</id>
+    <published>2013-11-07T12:59:00.000Z</published>
+    <updated>2013-11-07T12:59:33.000Z</updated>
+    <content type="html"><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title type="html"><![CDATA[hello world]]></title>
+    <link href="http://yijingbai.github.io/yijingblog/2013/11/07/hello-world-1/"/>
+    <id>http://yijingbai.github.io/yijingblog/2013/11/07/hello-world-1/</id>
+    <published>2013-11-07T12:22:20.000Z</published>
+    <updated>2013-11-07T12:43:04.000Z</updated>
+    <content type="html"><![CDATA[<h3>My First Post</h3>
+<p>I begin to write post~<br>This is my first post, I will put my development experience on there.</p>
+]]></content>
+  </entry>
+</feed>
