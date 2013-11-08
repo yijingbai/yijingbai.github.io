@@ -4,12 +4,22 @@
   <subtitle><![CDATA[Full-Stack Developer, Hackathon Lover]]></subtitle>
   <link href="http://yijingbai.github.io/yijingblog/atom.xml" rel="self"/>
   <link href="http://yijingbai.github.io/yijingblog"/>
-  <updated>2013-11-08T08:28:33.003Z</updated>
+  <updated>2013-11-08T13:12:21.004Z</updated>
   <id>http://yijingbai.github.io/yijingblog/</id>
   <author>
     <name><![CDATA[YiJing Bai]]></name>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[Wating for my JingJS buddy]]></title>
+    <link href="http://yijingbai.github.io/yijingblog/2013/11/08/wating-for-my-jingjs-buddy/"/>
+    <id>http://yijingbai.github.io/yijingblog/2013/11/08/wating-for-my-jingjs-buddy/</id>
+    <published>2013-11-08T13:05:25.000Z</published>
+    <updated>2013-11-08T13:12:12.000Z</updated>
+    <content type="html"><![CDATA[<p>I will be a volunteer of JingJS during this weekend and I am buddy of a foreign speaker, nick.<br>Now I am wating for him, and hope to see him later~ lol<br>!()[/IMG_6912.JPG]<br>!()[/IMG_6914.JPG]</p>
+]]></content>
+    <category scheme="http://yijingbai.github.io/yijingblog/tags/conference social/" term="conference social"/>
+  </entry>
   <entry>
     <title type="html"><![CDATA[How to define __unicode__ for django model]]></title>
     <link href="http://yijingbai.github.io/yijingblog/2013/11/08/how-to-define-unicode-function-for-django-model/"/>
