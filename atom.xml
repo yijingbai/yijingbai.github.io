@@ -4,18 +4,33 @@
   <subtitle><![CDATA[Full-Stack Developer, Hackathon Lover]]></subtitle>
   <link href="http://yijingbai.github.io/yijingblog/atom.xml" rel="self"/>
   <link href="http://yijingbai.github.io/yijingblog"/>
-  <updated>2013-11-08T08:23:17.617Z</updated>
+  <updated>2013-11-08T08:25:49.291Z</updated>
   <id>http://yijingbai.github.io/yijingblog/</id>
   <author>
     <name><![CDATA[YiJing Bai]]></name>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
   <entry>
+    <title type="html"><![CDATA[Hexo configuration]]></title>
+    <link href="http://yijingbai.github.io/yijingblog/2013/11/08/hexo-configuration/"/>
+    <id>http://yijingbai.github.io/yijingblog/2013/11/08/hexo-configuration/</id>
+    <published>2013-11-08T08:24:46.000Z</published>
+    <updated>2013-11-08T08:25:02.000Z</updated>
+    <content type="html"><![CDATA[<p>When using Hexo, especially it is deployed on a second directory, we should not only change following attribute in _config.yml</p>
+<pre><code><span class="title">url</span>:
+<span class="title">root</span>:</code></pre>
+<p>but also change</p>
+<pre><code>themes/theme name/<span class="filename">_config.yml</code></pre>
+<p>if you forget that, the js, css file in the template will not be loaded successfully.</p>
+]]></content>
+    <category scheme="http://yijingbai.github.io/yijingblog/tags/Hexo blog/" term="Hexo blog"/>
+  </entry>
+  <entry>
     <title type="html"><![CDATA[How to define __unicode__ for django model]]></title>
-    <link href="http://yijingbai.github.io/yijingblog/2013/11/08/how-to-define-__unicode__-for-django-model/"/>
-    <id>http://yijingbai.github.io/yijingblog/2013/11/08/how-to-define-__unicode__-for-django-model/</id>
+    <link href="http://yijingbai.github.io/yijingblog/2013/11/08/how-to-define-unicode-function-for-django-model/"/>
+    <id>http://yijingbai.github.io/yijingblog/2013/11/08/how-to-define-unicode-function-for-django-model/</id>
     <published>2013-11-08T07:49:16.000Z</published>
-    <updated>2013-11-08T08:17:27.000Z</updated>
+    <updated>2013-11-08T08:25:11.000Z</updated>
     <content type="html"><![CDATA[<p>Today I wrote a simple model using django, to make it display more friendly, we have to implement a __unicode__  function like this:</p>
 <figure class="highlight lang-python"><table><tr><td class="gutter"><pre>1
 2
@@ -63,7 +78,7 @@
     <link href="http://yijingbai.github.io/yijingblog/2013/11/07/hexo-使用配置/"/>
     <id>http://yijingbai.github.io/yijingblog/2013/11/07/hexo-使用配置/</id>
     <published>2013-11-07T12:59:00.000Z</published>
-    <updated>2013-11-08T08:22:58.000Z</updated>
+    <updated>2013-11-08T08:24:31.000Z</updated>
     <content type="html"><![CDATA[<p>When using Hexo, especially it is deployed on a second directory, we should not only change following attribute in _config.yml</p>
 <pre><code><span class="title">url</span>:
 <span class="title">root</span>:</code></pre>
