@@ -46,7 +46,7 @@
   <header>
     
   
-    <h1 class="title"><a href="/yijingblog/2013/11/08/how-to-define-__unicode__-for-django-model/">How to define \_\_unicode\__ for django model</a></h1>
+    <h1 class="title"><a href="/yijingblog/2013/11/08/how-to-define-__unicode__-for-django-model/">How to define __unicode__ for django model</a></h1>
   
 
     <time datetime="2013-11-08T07:49:16.000Z">
@@ -56,7 +56,7 @@
   <div class="entry-content">
     
       <p>Today I wrote a simple model using django, to make it display more friendly, we have to implement a __unicode__  function like this:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
+<figure class="highlight lang-python"><table><tr><td class="gutter"><pre>1
 2
 </pre></td><td class="code"><pre><span class="function"><span class="keyword">def</span> <span class="title">__unicode__</span><span class="params">()</span>:</span>
 	<span class="keyword">return</span>
@@ -65,7 +65,7 @@
 <p>but writing something like</p>
 <pre><code>"hello <span class="special">{</span>0<span class="special">}</span><span class="command">\n</span><span class="command">\t</span> world<span class="command">\n</span><span class="command">\t</span>".format(src, dest)</code></pre>
 <p>is ugly, so we can use a easier way:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
+<figure class="highlight lang-python"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -93,7 +93,7 @@
             self.retaintime, self.update_time)
 </pre></td></tr></table></figure>
 
-<p><strong>remember add u</strong> before “”“, and the format in ”“” “”&quot; will be saved,so we do not need to write \t or \n etc.</p>
+<p><strong>remember add u</strong> before “”“, and the format in ”“” “”&quot; will be saved,so we do not need to write \t or \n etc. anymore.</p>
 
     
     
@@ -115,7 +115,7 @@
   <header>
     
   
-    <h1 class="title"><a href="/yijingblog/2013/11/07/hexo-使用配置/">Hexo 使用配置</a></h1>
+    <h1 class="title"><a href="/yijingblog/2013/11/07/hexo-使用配置/">Hexo configuration</a></h1>
   
 
     <time datetime="2013-11-07T12:59:00.000Z">
@@ -124,13 +124,21 @@
   </header>
   <div class="entry-content">
     
-      <p>Hexo 部署在二级目录的时候需要注意更改root,不光是根目录下的，还有模板的。</p>
+      <p>When using Hexo, especially it is deployed on a second directory, we should not only change following attribute in _config.yml</p>
+<pre><code><span class="title">url</span>:
+<span class="title">root</span>:</code></pre>
+<p>but also change</p>
+<pre><code>themes/theme name/<span class="filename">_config.yml</code></pre>
+<p>if you forget that, the js, css file in the template will not be loaded successfully.</p>
 
     
     
     <footer class="meta">
       
       
+  <div class="tags">
+<a href="/yijingblog/tags/Hexo blog/">Hexo blog</a></div>
+
       
     </footer>
     
@@ -153,7 +161,7 @@
   <div class="entry-content">
     
       <h3>My First Post</h3>
-<p>I begin to write post~<br>This is my first post, I will put my development experience on there.</p>
+<p>I begin to write post~<br>This is my first post, I will put my development experiences there.</p>
 
     
     

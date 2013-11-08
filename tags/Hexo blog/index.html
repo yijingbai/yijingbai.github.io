@@ -3,12 +3,9 @@
 <head>
   <meta charset="utf-8">
   
-  <title>hello world | Yijing's Blog</title>
+  <title>Hexo blog | Yijing's Blog</title>
   <meta name="author" content="YiJing Bai">
 
-  
-  <meta name="description" content="My First Post
-I begin to write post~This is my first post, I will put my development experiences there.">
   
   
 
@@ -30,34 +27,63 @@ I begin to write post~This is my first post, I will put my development experienc
     
   </ul>
 </nav></header>
-  <div id="content" class="inner"><article class="post">
+  <div id="content" class="inner">
+
+<header id="archive-header">
+  <h1 class="alignleft">Tag: Hexo blog</h1>
+  <div class="search alignright">
+    <form action="http://google.com/search" method="get" accept-charset="utf-8">
+      <input type="search" name="q" results="0" placeholder="Search">
+      <input type="hidden" name="q" value="site:yijingbai.github.io/yijingblog">
+    </form>
+  </div>
+</header>
+
+
+  
+    <article class="post">
   
   <header>
     
   
-    <h1 class="title">hello world</h1>
+    <h1 class="title"><a href="/yijingblog/2013/11/07/hexo-使用配置/">Hexo configuration</a></h1>
   
 
-    <time datetime="2013-11-07T12:22:20.000Z">
+    <time datetime="2013-11-07T12:59:00.000Z">
   <span class="day">7</span><span class="month">Nov</span>
 </time>
   </header>
   <div class="entry-content">
     
-      <h3>My First Post</h3>
-<p>I begin to write post~<br>This is my first post, I will put my development experiences there.</p>
+      <p>When using Hexo, especially it is deployed on a second directory, we should not only change following attribute in _config.yml</p>
+<pre><code><span class="title">url</span>:
+<span class="title">root</span>:</code></pre>
+<p>but also change</p>
+<pre><code>themes/theme name/<span class="filename">_config.yml</code></pre>
+<p>if you forget that, the js, css file in the template will not be loaded successfully.</p>
 
     
     
     <footer class="meta">
       
       
+  <div class="tags">
+<a href="/yijingblog/tags/Hexo blog/">Hexo blog</a></div>
+
       
     </footer>
     
   </div>
   
-</article></div>
+</article>
+  
+
+  <nav id="pagenavi">
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div>
   <footer id="footer" class="inner"><div class="social alignright">
   
     <a class="facebook" href="http://www.facebook.com/yijing.bai" title="Facebook">Facebook</a>
