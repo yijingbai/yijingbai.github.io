@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Full-Stack Developer, Hackathon Lover]]></subtitle>
   <link href="http://yijingbai.github.io/yijingblog/atom.xml" rel="self"/>
   <link href="http://yijingbai.github.io/yijingblog"/>
-  <updated>2013-11-08T08:22:08.565Z</updated>
+  <updated>2013-11-08T08:23:17.617Z</updated>
   <id>http://yijingbai.github.io/yijingblog/</id>
   <author>
     <name><![CDATA[YiJing Bai]]></name>
@@ -63,7 +63,7 @@
     <link href="http://yijingbai.github.io/yijingblog/2013/11/07/hexo-使用配置/"/>
     <id>http://yijingbai.github.io/yijingblog/2013/11/07/hexo-使用配置/</id>
     <published>2013-11-07T12:59:00.000Z</published>
-    <updated>2013-11-08T08:22:06.000Z</updated>
+    <updated>2013-11-08T08:22:58.000Z</updated>
     <content type="html"><![CDATA[<p>When using Hexo, especially it is deployed on a second directory, we should not only change following attribute in _config.yml</p>
 <pre><code><span class="title">url</span>:
 <span class="title">root</span>:</code></pre>
