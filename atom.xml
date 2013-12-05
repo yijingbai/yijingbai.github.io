@@ -2,18 +2,18 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title><![CDATA[Yijing's Blog]]></title>
   <subtitle><![CDATA[Full-Stack Developer, Hackathon Lover]]></subtitle>
-  <link href="http://yijingbai.github.io/yijingblog/atom.xml" rel="self"/>
-  <link href="http://yijingbai.github.io/yijingblog"/>
-  <updated>2013-12-05T02:41:44.693Z</updated>
-  <id>http://yijingbai.github.io/yijingblog/</id>
+  <link href="http://yijingbai.github.io/blog/atom.xml" rel="self"/>
+  <link href="http://yijingbai.github.io/blog"/>
+  <updated>2013-12-05T02:43:43.630Z</updated>
+  <id>http://yijingbai.github.io/blog/</id>
   <author>
     <name><![CDATA[YiJing Bai]]></name>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
   <entry>
     <title type="html"><![CDATA[how to use django-RESTful api framework]]></title>
-    <link href="http://yijingbai.github.io/yijingblog/2013/12/03/how-to-use-django-restful-api-framework/"/>
-    <id>http://yijingbai.github.io/yijingblog/2013/12/03/how-to-use-django-restful-api-framework/</id>
+    <link href="http://yijingbai.github.io/blog/2013/12/03/how-to-use-django-restful-api-framework/"/>
+    <id>http://yijingbai.github.io/blog/2013/12/03/how-to-use-django-restful-api-framework/</id>
     <published>2013-12-03T15:58:38.000Z</published>
     <updated>2013-12-03T15:59:34.000Z</updated>
     <content type="html"><![CDATA[<p>Today, I have studied how to use django-Restful Framework.</p>
@@ -21,28 +21,28 @@
   </entry>
   <entry>
     <title type="html"><![CDATA[RESTful API design]]></title>
-    <link href="http://yijingbai.github.io/yijingblog/2013/11/12/restful-api-design/"/>
-    <id>http://yijingbai.github.io/yijingblog/2013/11/12/restful-api-design/</id>
+    <link href="http://yijingbai.github.io/blog/2013/11/12/restful-api-design/"/>
+    <id>http://yijingbai.github.io/blog/2013/11/12/restful-api-design/</id>
     <published>2013-11-12T10:59:28.000Z</published>
     <updated>2013-11-12T11:06:00.000Z</updated>
     <content type="html"><![CDATA[<p>I have startied to study RESTful API,Use Django Restful API framework</p>
 ]]></content>
-    <category scheme="http://yijingbai.github.io/yijingblog/tags/RESTful/" term="RESTful"/>
+    <category scheme="http://yijingbai.github.io/blog/tags/RESTful/" term="RESTful"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[Wating for my JingJS buddy]]></title>
-    <link href="http://yijingbai.github.io/yijingblog/2013/11/08/wating-for-my-jingjs-buddy/"/>
-    <id>http://yijingbai.github.io/yijingblog/2013/11/08/wating-for-my-jingjs-buddy/</id>
+    <link href="http://yijingbai.github.io/blog/2013/11/08/wating-for-my-jingjs-buddy/"/>
+    <id>http://yijingbai.github.io/blog/2013/11/08/wating-for-my-jingjs-buddy/</id>
     <published>2013-11-08T13:05:25.000Z</published>
     <updated>2013-11-08T16:32:00.000Z</updated>
     <content type="html"><![CDATA[<p>I will be a volunteer of JingJS during this weekend and I am buddy of a foreign speaker, nick.<br>Now I am wating for him, and hope to see him later~ lol<br><img src="http://ww2.sinaimg.cn/large/74007c8ejw1eae22tj9nej21kw16odsh.jpg" alt=""></p>
 ]]></content>
-    <category scheme="http://yijingbai.github.io/yijingblog/tags/conference social/" term="conference social"/>
+    <category scheme="http://yijingbai.github.io/blog/tags/conference social/" term="conference social"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[How to define __unicode__ for django model]]></title>
-    <link href="http://yijingbai.github.io/yijingblog/2013/11/08/how-to-define-unicode-function-for-django-model/"/>
-    <id>http://yijingbai.github.io/yijingblog/2013/11/08/how-to-define-unicode-function-for-django-model/</id>
+    <link href="http://yijingbai.github.io/blog/2013/11/08/how-to-define-unicode-function-for-django-model/"/>
+    <id>http://yijingbai.github.io/blog/2013/11/08/how-to-define-unicode-function-for-django-model/</id>
     <published>2013-11-08T07:49:16.000Z</published>
     <updated>2013-11-08T08:28:25.000Z</updated>
     <content type="html"><![CDATA[<p>Today I wrote a simple model using django, to make it display more friendly, we have to implement a __unicode__  function like this:</p>
@@ -85,12 +85,12 @@
 
 <p><strong>remember add u</strong> before “”“, and the format in ”“” “”&quot; will be saved,so we do not need to write \t or \n etc. anymore.</p>
 ]]></content>
-    <category scheme="http://yijingbai.github.io/yijingblog/tags/python django/" term="python django"/>
+    <category scheme="http://yijingbai.github.io/blog/tags/python django/" term="python django"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[Hexo configuration]]></title>
-    <link href="http://yijingbai.github.io/yijingblog/2013/11/07/hexo-使用配置/"/>
-    <id>http://yijingbai.github.io/yijingblog/2013/11/07/hexo-使用配置/</id>
+    <link href="http://yijingbai.github.io/blog/2013/11/07/hexo-使用配置/"/>
+    <id>http://yijingbai.github.io/blog/2013/11/07/hexo-使用配置/</id>
     <published>2013-11-07T12:59:00.000Z</published>
     <updated>2013-12-03T16:24:10.000Z</updated>
     <content type="html"><![CDATA[<p>When using Hexo, especially it is deployed on a second directory, we should not only change following attribute in _config.yml</p>
@@ -104,12 +104,12 @@
 <pre><code>themes/theme name/<span class="filename">_config.yml</code></pre>
 <p>if you forget that, the js, css file in the template will not be loaded successfully.</p>
 ]]></content>
-    <category scheme="http://yijingbai.github.io/yijingblog/tags/Hexo blog/" term="Hexo blog"/>
+    <category scheme="http://yijingbai.github.io/blog/tags/Hexo blog/" term="Hexo blog"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[hello world]]></title>
-    <link href="http://yijingbai.github.io/yijingblog/2013/11/07/hello-world-1/"/>
-    <id>http://yijingbai.github.io/yijingblog/2013/11/07/hello-world-1/</id>
+    <link href="http://yijingbai.github.io/blog/2013/11/07/hello-world-1/"/>
+    <id>http://yijingbai.github.io/blog/2013/11/07/hello-world-1/</id>
     <published>2013-11-07T12:22:20.000Z</published>
     <updated>2013-11-08T08:18:07.000Z</updated>
     <content type="html"><![CDATA[<h3>My First Post</h3>
