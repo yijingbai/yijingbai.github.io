@@ -95,7 +95,56 @@
   </header>
   <div class="entry-content">
     
-      <p>Today, I have studied how to use django-Restful Framework.</p>
+      <p>These days, I always use django restful framework to make some RESTful API. And also face many questions.</p>
+<p>So I will write a summary here about these questions and some tricks to use this.</p>
+<figure class="highlight lang-py"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre><span class="class"><span class="keyword">class</span> <span class="title">ProtoFieldsViewSet</span><span class="params">(WrapCreateModelMixin,
+                        WrapUpdateModelMixin,
+                        WrapRetrieveModelMixin,
+                        WrapListModelMixin,
+                        viewsets.GenericViewSet)</span>:</span>
+    <span class="string">"""
+    ProtoField的viewsets,包括新建,更新,详情,列表
+    """</span>
+    queryset = ProtoField.objects.order_by(<span class="string">'source'</span>)
+    serializer_class = ProtoFieldSerializer
+</pre></td></tr></table></figure>
+
+<p>For example, use this code could easily make a api with POST,PUT,GET and can provide create,update,get,list object function.</p>
+<p>This is kind of a muti-extend. with the basic genericViewSet provide the base function and property, and then if you need some function, you just need to add the corresponding mixins.</p>
+<p>If you don&#39;t want to use the provided mixin, you can write API your self:</p>
+<figure class="highlight lang-py"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre><span class="class"><span class="keyword">class</span> <span class="title">ProtoFieldsValidation</span><span class="params">(APIView)</span>:</span>
+    <span class="string">"""
+    判断Protofield是否有重复的API
+    """</span>
+    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, request, *args, **kwargs)</span>:</span>
+        <span class="keyword">if</span> <span class="string">'key'</span> <span class="keyword">not</span> <span class="keyword">in</span> kwargs:
+            <span class="keyword">return</span> Response(returnSuccess(<span class="string">'Please Provide key'</span>))
+        fields = ProtoField.objects.filter(status=<span class="number">1</span>)
+        keylist = [p.key <span class="keyword">for</span> p <span class="keyword">in</span> fields]
+        <span class="keyword">return</span> Response(returnSuccess({<span class="string">'result'</span>: kwargs[<span class="string">'key'</span>] <span class="keyword">not</span> <span class="keyword">in</span> keylist}))
+</pre></td></tr></table></figure>
+
+<p>like this. You just need to make a Class that extend APIView class. Then you can add get, post, put …etc. function corresponding to the GET,PUT,POST requests.</p>
 
     
     
