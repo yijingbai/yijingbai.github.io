@@ -4,12 +4,21 @@
   <subtitle><![CDATA[Full-Stack Developer, Hackathon Lover]]></subtitle>
   <link href="http://yijingbai.github.io/blog/atom.xml" rel="self"/>
   <link href="http://yijingbai.github.io/blog"/>
-  <updated>2013-12-05T02:51:57.751Z</updated>
+  <updated>2013-12-11T14:36:31.982Z</updated>
   <id>http://yijingbai.github.io/blog/</id>
   <author>
     <name><![CDATA[YiJing Bai]]></name>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[I learned nodejs]]></title>
+    <link href="http://yijingbai.github.io/blog/2013/12/11/i-learned-nodejs/"/>
+    <id>http://yijingbai.github.io/blog/2013/12/11/i-learned-nodejs/</id>
+    <published>2013-12-11T14:35:39.000Z</published>
+    <updated>2013-12-11T14:36:15.000Z</updated>
+    <content type="html"><![CDATA[<p>Today, I learned nodejs, it is a powerful language.</p>
+]]></content>
+  </entry>
   <entry>
     <title type="html"><![CDATA[how to use django-RESTful api framework]]></title>
     <link href="http://yijingbai.github.io/blog/2013/12/03/how-to-use-django-restful-api-framework/"/>
