@@ -4,12 +4,22 @@
   <subtitle><![CDATA[Full-Stack Developer, Hackathon Lover]]></subtitle>
   <link href="http://yijingbai.github.io/blog/atom.xml" rel="self"/>
   <link href="http://yijingbai.github.io/blog"/>
-  <updated>2014-05-19T13:23:43.230Z</updated>
+  <updated>2014-05-19T13:35:40.755Z</updated>
   <id>http://yijingbai.github.io/blog/</id>
   <author>
     <name><![CDATA[YiJing Bai]]></name>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[Thinking of my FUTURE]]></title>
+    <link href="http://yijingbai.github.io/blog/2014/05/19/thinking-of-my-future/"/>
+    <id>http://yijingbai.github.io/blog/2014/05/19/thinking-of-my-future/</id>
+    <published>2014-05-19T13:32:37.000Z</published>
+    <updated>2014-05-19T13:35:34.000Z</updated>
+    <content type="html"><![CDATA[<p>I am in a decadent status for about 1 month.</p>
+<p>In This period of time, I have always thought about my future and what way I want to go.</p>
+]]></content>
+  </entry>
   <entry>
     <title type="html"><![CDATA[a new way to use _.template]]></title>
     <link href="http://yijingbai.github.io/blog/2014/05/19/a-new-way-to-use-_template/"/>
