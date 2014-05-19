@@ -4,12 +4,20 @@
   <subtitle><![CDATA[Full-Stack Developer, Hackathon Lover]]></subtitle>
   <link href="http://yijingbai.github.io/blog/atom.xml" rel="self"/>
   <link href="http://yijingbai.github.io/blog"/>
-  <updated>2014-05-19T13:35:40.755Z</updated>
+  <updated>2014-05-19T13:38:19.854Z</updated>
   <id>http://yijingbai.github.io/blog/</id>
   <author>
     <name><![CDATA[YiJing Bai]]></name>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[test]]></title>
+    <link href="http://yijingbai.github.io/blog/2014/05/19/test/"/>
+    <id>http://yijingbai.github.io/blog/2014/05/19/test/</id>
+    <published>2014-05-19T13:38:13.000Z</published>
+    <updated>2014-05-19T13:38:14.000Z</updated>
+    <content type="html"><![CDATA[]]></content>
+  </entry>
   <entry>
     <title type="html"><![CDATA[Thinking of my FUTURE]]></title>
     <link href="http://yijingbai.github.io/blog/2014/05/19/thinking-of-my-future/"/>
