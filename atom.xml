@@ -4,12 +4,53 @@
   <subtitle><![CDATA[Full-Stack Developer, Hackathon Lover]]></subtitle>
   <link href="http://yijingbai.github.io/blog/atom.xml" rel="self"/>
   <link href="http://yijingbai.github.io/blog"/>
-  <updated>2014-05-19T13:38:19.854Z</updated>
+  <updated>2014-05-21T15:07:17.165Z</updated>
   <id>http://yijingbai.github.io/blog/</id>
   <author>
     <name><![CDATA[YiJing Bai]]></name>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[Something about post json using .ajax in jquery]]></title>
+    <link href="http://yijingbai.github.io/blog/2014/05/21/something-about-post-json-using-ajax-in-jquery/"/>
+    <id>http://yijingbai.github.io/blog/2014/05/21/something-about-post-json-using-ajax-in-jquery/</id>
+    <published>2014-05-21T14:56:48.000Z</published>
+    <updated>2014-05-21T15:07:10.000Z</updated>
+    <content type="html"><![CDATA[<p>When I try to use jquery&#39;s <code>$.ajax</code> method post a json to server, I found a strange phenomenon that if I pass the json object as data, it will post it as a form string. For example, the object I want to post is:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="rules">{
+    <span class="rule"><span class="attribute">name</span>:<span class="value"> <span class="string">'yijing'</span>,
+    age:  <span class="string">'22'</span>,
+    like: [<span class="string">'computer'</span>, <span class="string">'swimming'</span>]
+}</span></span></span>
+</pre></td></tr></table></figure>
+
+<p>the array in it will transform to a string thing:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="attribute">like[]</span>: <span class="string">'computer'</span>
+<span class="attribute">like[]</span>: <span class="string">'swiming'</span>
+</pre></td></tr></table></figure>
+
+<p>when server side parse it as a json string, it will cause an error.</p>
+<p>The problem is that you can not directly pass the object to the data field of .ajax()&#39;s config, you should covert it to a json string:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="filename">JSON.stringify(dataobject)
+</pre></td></tr></table></figure>
+
+<p>What‘s more, if you want post a json to server, don’t forget to add contentType in the config:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>contentType:"application/json;char<span class="operator"><span class="keyword">set</span>=utf-<span class="number">8</span><span class="string">"
+</pre></td></tr></table></figure>
+
+<p>because the .ajax method automatically set it as form if you don&#39;t pass it.</p>
+]]></content>
+    <category scheme="http://yijingbai.github.io/blog/tags/jquery ajax/" term="jquery ajax"/>
+  </entry>
   <entry>
     <title type="html"><![CDATA[test]]></title>
     <link href="http://yijingbai.github.io/blog/2014/05/19/test/"/>

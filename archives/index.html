@@ -58,6 +58,68 @@
   <header>
     
   
+    <h1 class="title"><a href="/blog/2014/05/21/something-about-post-json-using-ajax-in-jquery/">Something about post json using .ajax in jquery</a></h1>
+  
+
+    <time datetime="2014-05-21T14:56:48.000Z">
+  <span class="day">21</span><span class="month">May</span>
+</time>
+  </header>
+  <div class="entry-content">
+    
+      <p>When I try to use jquery&#39;s <code>$.ajax</code> method post a json to server, I found a strange phenomenon that if I pass the json object as data, it will post it as a form string. For example, the object I want to post is:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="rules">{
+    <span class="rule"><span class="attribute">name</span>:<span class="value"> <span class="string">'yijing'</span>,
+    age:  <span class="string">'22'</span>,
+    like: [<span class="string">'computer'</span>, <span class="string">'swimming'</span>]
+}</span></span></span>
+</pre></td></tr></table></figure>
+
+<p>the array in it will transform to a string thing:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="attribute">like[]</span>: <span class="string">'computer'</span>
+<span class="attribute">like[]</span>: <span class="string">'swiming'</span>
+</pre></td></tr></table></figure>
+
+<p>when server side parse it as a json string, it will cause an error.</p>
+<p>The problem is that you can not directly pass the object to the data field of .ajax()&#39;s config, you should covert it to a json string:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="filename">JSON.stringify(dataobject)
+</pre></td></tr></table></figure>
+
+<p>What‘s more, if you want post a json to server, don’t forget to add contentType in the config:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>contentType:"application/json;char<span class="operator"><span class="keyword">set</span>=utf-<span class="number">8</span><span class="string">"
+</pre></td></tr></table></figure>
+
+<p>because the .ajax method automatically set it as form if you don&#39;t pass it.</p>
+
+    
+    
+    <footer class="meta">
+      
+      
+  <div class="tags">
+<a href="/blog/tags/jquery ajax/">jquery ajax</a></div>
+
+      
+    </footer>
+    
+  </div>
+  
+</article>
+  
+    <article class="post">
+  
+  <header>
+    
+  
     <h1 class="title"><a href="/blog/2014/05/19/test/">test</a></h1>
   
 
@@ -494,75 +556,6 @@
       
   <div class="tags">
 <a href="/blog/tags/conference social/">conference social</a></div>
-
-      
-    </footer>
-    
-  </div>
-  
-</article>
-  
-    <article class="post">
-  
-  <header>
-    
-  
-    <h1 class="title"><a href="/blog/2013/11/08/how-to-define-unicode-function-for-django-model/">How to define __unicode__ for django model</a></h1>
-  
-
-    <time datetime="2013-11-08T07:49:16.000Z">
-  <span class="day">8</span><span class="month">Nov</span>
-</time>
-  </header>
-  <div class="entry-content">
-    
-      <p>Today I wrote a simple model using django, to make it display more friendly, we have to implement a __unicode__  function like this:</p>
-<figure class="highlight lang-python"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre><span class="function"><span class="keyword">def</span> <span class="title">__unicode__</span><span class="params">()</span>:</span>
-	<span class="keyword">return</span>
-</pre></td></tr></table></figure>
-
-<p>but writing something like</p>
-<pre><code>"hello <span class="special">{</span>0<span class="special">}</span><span class="command">\n</span><span class="command">\t</span> world <span class="special">{</span>1<span class="special">}</span><span class="command">\n</span><span class="command">\t</span>".format(src, dest)</code></pre>
-<p>is ugly, so we can use a easier way:</p>
-<figure class="highlight lang-python"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-</pre></td><td class="code"><pre> <span class="function"><span class="keyword">def</span> <span class="title">__unicode__</span><span class="params">(self)</span>:</span>
-        <span class="keyword">return</span> <span class="string">u"""
-        Configure {0}:
-            User: {1}
-            status: {2}
-            datapath: {3}
-            datarule: {4}
-            retaintime: {5}
-            update_time: {6}
-        """</span>.format(
-            self.id, self.user, self.status,
-            self.datapath, self.datarule,
-            self.retaintime, self.update_time)
-</pre></td></tr></table></figure>
-
-<p><strong>remember add u</strong> before “”“, and the format in ”“” “”&quot; will be saved,so we do not need to write \t or \n etc. anymore.</p>
-
-    
-    
-    <footer class="meta">
-      
-      
-  <div class="tags">
-<a href="/blog/tags/python django/">python django</a></div>
 
       
     </footer>
