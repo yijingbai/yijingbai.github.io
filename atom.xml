@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Full-Stack Developer, Hackathon Lover]]></subtitle>
   <link href="http://yijingbai.github.io/blog/atom.xml" rel="self"/>
   <link href="http://yijingbai.github.io/blog"/>
-  <updated>2014-05-21T15:07:17.165Z</updated>
+  <updated>2014-05-21T15:11:01.151Z</updated>
   <id>http://yijingbai.github.io/blog/</id>
   <author>
     <name><![CDATA[YiJing Bai]]></name>
@@ -50,14 +50,6 @@
 <p>because the .ajax method automatically set it as form if you don&#39;t pass it.</p>
 ]]></content>
     <category scheme="http://yijingbai.github.io/blog/tags/jquery ajax/" term="jquery ajax"/>
-  </entry>
-  <entry>
-    <title type="html"><![CDATA[test]]></title>
-    <link href="http://yijingbai.github.io/blog/2014/05/19/test/"/>
-    <id>http://yijingbai.github.io/blog/2014/05/19/test/</id>
-    <published>2014-05-19T13:38:13.000Z</published>
-    <updated>2014-05-19T13:38:14.000Z</updated>
-    <content type="html"><![CDATA[]]></content>
   </entry>
   <entry>
     <title type="html"><![CDATA[Thinking of my FUTURE]]></title>
