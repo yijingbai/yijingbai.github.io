@@ -45,6 +45,70 @@
   <header>
     
   
+    <h1 class="title"><a href="/blog/2014/05/22/a-introduce-to-backbone/">A introduce to Backbone</a></h1>
+  
+
+    <time datetime="2014-05-22T15:19:01.000Z">
+  <span class="day">22</span><span class="month">May</span>
+</time>
+  </header>
+  <div class="entry-content">
+    
+      <p>Backbone is a Simple and Powerful framwork for the web app have a lot of data models, and have a lot of operations on it.</p>
+<p>The core class for backbone is Model, Event, Collection.</p>
+<h1>Model</h1>
+<p>The Model is used to define the model used in the app.<br>like:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>var Note = Backbone.Model.extend({
+  initialize: <span class="keyword">function</span>() { <span class="keyword">...</span> },
+  author: <span class="keyword">function</span>() { <span class="keyword">...</span> },
+  coordinates: <span class="keyword">function</span>() { <span class="keyword">...</span> },
+  allowedToEdit: <span class="keyword">function</span>(account) {
+    <span class="keyword">return</span> true;
+  }
+});
+</pre></td></tr></table></figure>
+
+<p><code>Backbone.Model.extend</code> is a method that can let you extend the default model of backbone and create your own one. By doing this, you can overwrite the function of it as well as add some new one.</p>
+<p>After define a model, you can create it your object use it.Just simply pass the object to it.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="tag">new</span> <span class="tag">Note</span>(<span class="rules">{
+  <span class="rule"><span class="attribute">title</span>:<span class="value"> <span class="string">"One Thousand and One Nights"</span>,
+  author: <span class="string">"Scheherazade"</span>
+}</span></span></span>);
+</pre></td></tr></table></figure>
+
+
+    
+    
+    <footer class="meta">
+      
+      
+  <div class="tags">
+<a href="/blog/tags/backbone, javascript/">backbone, javascript</a></div>
+
+      
+    </footer>
+    
+  </div>
+  
+</article>
+
+  <article class="post">
+  
+  <header>
+    
+  
     <h1 class="title"><a href="/blog/2014/05/21/something-about-post-json-using-ajax-in-jquery/">Something about post json using .ajax in jquery</a></h1>
   
 
@@ -521,75 +585,6 @@
       
   <div class="tags">
 <a href="/blog/tags/conference social/">conference social</a></div>
-
-      
-    </footer>
-    
-  </div>
-  
-</article>
-
-  <article class="post">
-  
-  <header>
-    
-  
-    <h1 class="title"><a href="/blog/2013/11/08/how-to-define-unicode-function-for-django-model/">How to define __unicode__ for django model</a></h1>
-  
-
-    <time datetime="2013-11-08T07:49:16.000Z">
-  <span class="day">8</span><span class="month">Nov</span>
-</time>
-  </header>
-  <div class="entry-content">
-    
-      <p>Today I wrote a simple model using django, to make it display more friendly, we have to implement a __unicode__  function like this:</p>
-<figure class="highlight lang-python"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre><span class="function"><span class="keyword">def</span> <span class="title">__unicode__</span><span class="params">()</span>:</span>
-	<span class="keyword">return</span>
-</pre></td></tr></table></figure>
-
-<p>but writing something like</p>
-<pre><code>"hello <span class="special">{</span>0<span class="special">}</span><span class="command">\n</span><span class="command">\t</span> world <span class="special">{</span>1<span class="special">}</span><span class="command">\n</span><span class="command">\t</span>".format(src, dest)</code></pre>
-<p>is ugly, so we can use a easier way:</p>
-<figure class="highlight lang-python"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-</pre></td><td class="code"><pre> <span class="function"><span class="keyword">def</span> <span class="title">__unicode__</span><span class="params">(self)</span>:</span>
-        <span class="keyword">return</span> <span class="string">u"""
-        Configure {0}:
-            User: {1}
-            status: {2}
-            datapath: {3}
-            datarule: {4}
-            retaintime: {5}
-            update_time: {6}
-        """</span>.format(
-            self.id, self.user, self.status,
-            self.datapath, self.datarule,
-            self.retaintime, self.update_time)
-</pre></td></tr></table></figure>
-
-<p><strong>remember add u</strong> before “”“, and the format in ”“” “”&quot; will be saved,so we do not need to write \t or \n etc. anymore.</p>
-
-    
-    
-    <footer class="meta">
-      
-      
-  <div class="tags">
-<a href="/blog/tags/python django/">python django</a></div>
 
       
     </footer>

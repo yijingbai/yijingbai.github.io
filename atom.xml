@@ -4,12 +4,55 @@
   <subtitle><![CDATA[Full-Stack Developer, Hackathon Lover]]></subtitle>
   <link href="http://yijingbai.github.io/blog/atom.xml" rel="self"/>
   <link href="http://yijingbai.github.io/blog"/>
-  <updated>2014-05-21T15:18:31.064Z</updated>
+  <updated>2014-05-22T15:25:45.316Z</updated>
   <id>http://yijingbai.github.io/blog/</id>
   <author>
     <name><![CDATA[YiJing Bai]]></name>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[A introduce to Backbone]]></title>
+    <link href="http://yijingbai.github.io/blog/2014/05/22/a-introduce-to-backbone/"/>
+    <id>http://yijingbai.github.io/blog/2014/05/22/a-introduce-to-backbone/</id>
+    <published>2014-05-22T15:19:01.000Z</published>
+    <updated>2014-05-22T15:25:33.000Z</updated>
+    <content type="html"><![CDATA[<p>Backbone is a Simple and Powerful framwork for the web app have a lot of data models, and have a lot of operations on it.</p>
+<p>The core class for backbone is Model, Event, Collection.</p>
+<h1>Model</h1>
+<p>The Model is used to define the model used in the app.<br>like:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>var Note = Backbone.Model.extend({
+  initialize: <span class="keyword">function</span>() { <span class="keyword">...</span> },
+  author: <span class="keyword">function</span>() { <span class="keyword">...</span> },
+  coordinates: <span class="keyword">function</span>() { <span class="keyword">...</span> },
+  allowedToEdit: <span class="keyword">function</span>(account) {
+    <span class="keyword">return</span> true;
+  }
+});
+</pre></td></tr></table></figure>
+
+<p><code>Backbone.Model.extend</code> is a method that can let you extend the default model of backbone and create your own one. By doing this, you can overwrite the function of it as well as add some new one.</p>
+<p>After define a model, you can create it your object use it.Just simply pass the object to it.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="tag">new</span> <span class="tag">Note</span>(<span class="rules">{
+  <span class="rule"><span class="attribute">title</span>:<span class="value"> <span class="string">"One Thousand and One Nights"</span>,
+  author: <span class="string">"Scheherazade"</span>
+}</span></span></span>);
+</pre></td></tr></table></figure>
+
+]]></content>
+    <category scheme="http://yijingbai.github.io/blog/tags/backbone, javascript/" term="backbone, javascript"/>
+  </entry>
   <entry>
     <title type="html"><![CDATA[Something about post json using .ajax in jquery]]></title>
     <link href="http://yijingbai.github.io/blog/2014/05/21/something-about-post-json-using-ajax-in-jquery/"/>

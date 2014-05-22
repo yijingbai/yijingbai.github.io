@@ -58,6 +58,70 @@
   <header>
     
   
+    <h1 class="title"><a href="/blog/2014/05/22/a-introduce-to-backbone/">A introduce to Backbone</a></h1>
+  
+
+    <time datetime="2014-05-22T15:19:01.000Z">
+  <span class="day">22</span><span class="month">May</span>
+</time>
+  </header>
+  <div class="entry-content">
+    
+      <p>Backbone is a Simple and Powerful framwork for the web app have a lot of data models, and have a lot of operations on it.</p>
+<p>The core class for backbone is Model, Event, Collection.</p>
+<h1>Model</h1>
+<p>The Model is used to define the model used in the app.<br>like:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>var Note = Backbone.Model.extend({
+  initialize: <span class="keyword">function</span>() { <span class="keyword">...</span> },
+  author: <span class="keyword">function</span>() { <span class="keyword">...</span> },
+  coordinates: <span class="keyword">function</span>() { <span class="keyword">...</span> },
+  allowedToEdit: <span class="keyword">function</span>(account) {
+    <span class="keyword">return</span> true;
+  }
+});
+</pre></td></tr></table></figure>
+
+<p><code>Backbone.Model.extend</code> is a method that can let you extend the default model of backbone and create your own one. By doing this, you can overwrite the function of it as well as add some new one.</p>
+<p>After define a model, you can create it your object use it.Just simply pass the object to it.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="tag">new</span> <span class="tag">Note</span>(<span class="rules">{
+  <span class="rule"><span class="attribute">title</span>:<span class="value"> <span class="string">"One Thousand and One Nights"</span>,
+  author: <span class="string">"Scheherazade"</span>
+}</span></span></span>);
+</pre></td></tr></table></figure>
+
+
+    
+    
+    <footer class="meta">
+      
+      
+  <div class="tags">
+<a href="/blog/tags/backbone, javascript/">backbone, javascript</a></div>
+
+      
+    </footer>
+    
+  </div>
+  
+</article>
+  
+    <article class="post">
+  
+  <header>
+    
+  
     <h1 class="title"><a href="/blog/2014/05/21/something-about-post-json-using-ajax-in-jquery/">Something about post json using .ajax in jquery</a></h1>
   
 
