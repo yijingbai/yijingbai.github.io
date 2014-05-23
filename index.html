@@ -45,6 +45,158 @@
   <header>
     
   
+    <h1 class="title"><a href="/blog/2014/05/23/reading-the-backbone-source-code/">Reading the backbone source code</a></h1>
+  
+
+    <time datetime="2014-05-23T14:41:36.000Z">
+  <span class="day">23</span><span class="month">May</span>
+</time>
+  </header>
+  <div class="entry-content">
+    
+      <p>From this post, I will read backbone&#39;s source code and write down my thinking.</p>
+<p>At the beginning of the file,</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre></td><td class="code"><pre><span class="list">(<span class="title">function</span><span class="body"><span class="list">(<span class="title">root</span><span class="body">, factory)</span></span> {
+
+  // Set up Backbone appropriately for the environment. Start with AMD.
+  if <span class="list">(<span class="title">typeof</span><span class="body"> define === 'function' <span class="keyword">&&</span> define.amd)</span></span> {
+    define<span class="list">(<span class="body">['underscore', 'jquery', 'exports'], function<span class="list">(<span class="title">_</span><span class="body">, $, exports)</span></span> {
+      // Export global even in AMD case in case this script is loaded with
+      // others that may still expect a global Backbone.
+      root.Backbone = factory<span class="list">(<span class="title">root</span><span class="body">, exports, _, $)</span></span><span class="comment">;</span>
+    })</span></span><span class="comment">;</span>
+
+  // Next for Node.js or CommonJS. jQuery may not be needed as a module.
+  } else if <span class="list">(<span class="title">typeof</span><span class="body"> exports !== 'undefined')</span></span> {
+    var _ = require<span class="list">(<span class="body">'underscore')</span></span><span class="comment">;</span>
+    factory<span class="list">(<span class="title">root</span><span class="body">, exports, _)</span></span><span class="comment">;</span>
+
+  // Finally, as a browser global.
+  } else {
+    root.Backbone = factory<span class="list">(<span class="title">root</span><span class="body">, {}, root._, <span class="list">(<span class="title">root</span><span class="body">.jQuery || root.Zepto || root.ender || root.$)</span></span>)</span></span><span class="comment">;</span>
+  }
+
+}<span class="list">(<span class="title">this</span><span class="body">, function<span class="list">(<span class="title">root</span><span class="body">, Backbone, _, $)</span></span> {
+</pre></td></tr></table></figure>
+
+<p>There implement factory method here. First define a factory parameter, and then passed a anoynomous function with parameter root, Backbone, _, $. These things are the dependency of backbone.</p>
+<p>These use three judgement to handle three situations.</p>
+<ol>
+<li>when there have a define function, which meaning this web app may use require.js, and provide AMD, use define function and load the module.</li>
+<li>if there have exports, it make use node.js or common.js, so jquery is not needed.</li>
+<li>if in normal browser, juse need to seet it as gloabl variable.</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+</pre></td><td class="code"><pre>  <span class="regexp">//</span> Regular expression used to split event strings.
+  <span class="reserved">var</span> eventSplitter = <span class="regexp">/\s+/</span>;
+
+  <span class="regexp">//</span> Implement fancy features <span class="keyword">of</span> the Events API such as multiple event
+  <span class="regexp">//</span> names `<span class="javascript"><span class="string">"change blur"</span></span>` <span class="keyword">and</span> jQuery-style event maps `<span class="javascript">{change: action}</span>`
+  <span class="regexp">//</span> <span class="keyword">in</span> terms <span class="keyword">of</span> the existing API.
+  <span class="reserved">var</span> eventsApi = <span class="reserved">function</span>(obj, action, name, rest) {
+    <span class="keyword">if</span> (!name) <span class="keyword">return</span> <span class="literal">true</span>;
+
+    <span class="regexp">//</span> Handle event maps.
+    <span class="keyword">if</span> (<span class="keyword">typeof</span> name === <span class="string">'object'</span>) {
+      <span class="keyword">for</span> (<span class="reserved">var</span> key <span class="keyword">in</span> name) {
+        obj[action].apply(obj, [key, name[key]].concat(rest));
+      }
+      <span class="keyword">return</span> <span class="literal">false</span>;
+    }
+
+    <span class="regexp">//</span> Handle space separated event names.
+    <span class="keyword">if</span> (eventSplitter.test(name)) {
+      <span class="reserved">var</span> names = name.split(eventSplitter);
+      <span class="keyword">for</span> (<span class="reserved">var</span> i = <span class="number">0</span>, l = names.length; i &lt; l; i++) {
+        obj[action].apply(obj, [names[i]].concat(rest));
+      }
+      <span class="keyword">return</span> <span class="literal">false</span>;
+    }
+
+    <span class="keyword">return</span> <span class="literal">true</span>;
+  };
+</pre></td></tr></table></figure>
+
+<p>This block of code is in the Event. It implement the facny feature of Event API like “change title”.<br>to Handle event maps, </p>
+<pre><code><span class="function"><span class="title">for</span> <span class="params">(var key in name)</span> {
+    <span class="title">obj</span>[<span class="title">action</span>].<span class="title">apply</span><span class="params">(obj, [key, name[key]].<span class="function_name">concat</span>(rest))</span>;
+}</code></pre>
+<p>it traverse the key on event maps object concat the array [key, name[key]]  and rest then get a array: [key, name[key], callback, context, etc..], then use apply to call it on obj, and send this array as parameter. for example, if pass a</p>
+<pre><code><span class="rules">{
+    <span class="rule"><span class="attribute">change</span>:<span class="value"> function () {
+        console.<span class="function">log(<span class="string">'hello world'</span>)</span>
+    }</span></span></span>
+}</code></pre>
+<p>and action is ‘on’, the statement will bi<br>obj[‘on’].apply(obj, [‘on’, function, ])</p>
+
+    
+    
+    <footer class="meta">
+      
+      
+  <div class="tags">
+<a href="/blog/tags/javascript, backbone/">javascript, backbone</a></div>
+
+      
+    </footer>
+    
+  </div>
+  
+</article>
+
+  <article class="post">
+  
+  <header>
+    
+  
     <h1 class="title"><a href="/blog/2014/05/22/a-introduce-to-backbone/">A introduce to Backbone</a></h1>
   
 
@@ -554,37 +706,6 @@
       
   <div class="tags">
 <a href="/blog/tags/RESTful/">RESTful</a></div>
-
-      
-    </footer>
-    
-  </div>
-  
-</article>
-
-  <article class="post">
-  
-  <header>
-    
-  
-    <h1 class="title"><a href="/blog/2013/11/08/wating-for-my-jingjs-buddy/">Wating for my JingJS buddy</a></h1>
-  
-
-    <time datetime="2013-11-08T13:05:25.000Z">
-  <span class="day">8</span><span class="month">Nov</span>
-</time>
-  </header>
-  <div class="entry-content">
-    
-      <p>I will be a volunteer of JingJS during this weekend and I am buddy of a foreign speaker, nick.<br>Now I am wating for him, and hope to see him later~ lol<br><img src="http://ww2.sinaimg.cn/large/74007c8ejw1eae22tj9nej21kw16odsh.jpg" alt=""></p>
-
-    
-    
-    <footer class="meta">
-      
-      
-  <div class="tags">
-<a href="/blog/tags/conference social/">conference social</a></div>
 
       
     </footer>
