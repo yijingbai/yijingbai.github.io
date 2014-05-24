@@ -4,12 +4,47 @@
   <subtitle><![CDATA[Full-Stack Developer, Hackathon Lover]]></subtitle>
   <link href="http://yijingbai.github.io/blog/atom.xml" rel="self"/>
   <link href="http://yijingbai.github.io/blog"/>
-  <updated>2014-05-23T16:03:35.084Z</updated>
+  <updated>2014-05-24T15:43:43.087Z</updated>
   <id>http://yijingbai.github.io/blog/</id>
   <author>
     <name><![CDATA[YiJing Bai]]></name>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[reading the backbone source code (2)]]></title>
+    <link href="http://yijingbai.github.io/blog/2014/05/24/reading-the-backbone-source-code-(2)/"/>
+    <id>http://yijingbai.github.io/blog/2014/05/24/reading-the-backbone-source-code-(2)/</id>
+    <published>2014-05-24T15:35:30.000Z</published>
+    <updated>2014-05-24T15:43:27.000Z</updated>
+    <content type="html"><![CDATA[<p>Let continute reading the backboen code. In event class, there is a on function:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="literal">on</span>: <span class="reserved">function</span>(name, callback, context) {
+      <span class="keyword">if</span> (!eventsApi(<span class="keyword">this</span>, <span class="string">'on'</span>, name, [callback, context]) || !callback) <span class="keyword">return</span> <span class="keyword">this</span>;
+      <span class="keyword">this</span>._events || (<span class="keyword">this</span>._events = {});
+      <span class="reserved">var</span> events = <span class="keyword">this</span>._events[name] || (<span class="keyword">this</span>._events[name] = []);
+      events.push({callback: callback, context: context, ctx: context || <span class="keyword">this</span>});
+      <span class="keyword">return</span> <span class="keyword">this</span>;
+    }
+</pre></td></tr></table></figure>
+
+<p>this function will bind the event in <code>name</code> to <code>callback</code> function.The if statement:</p>
+<pre><code><span class="function"><span class="title">if</span> <span class="params">(!<span class="function_name">eventsApi</span>(this, 'on', name, [callback, context]) || !callback)</span> 
+<span class="title">return</span> <span class="title">this</span>;</code></pre>
+<p>this use the function we talked yesterday and when bind success it will return false.</p>
+<pre><code><span class="transposed_variable">this.</span>_<span class="keyword">events</span> || (<span class="transposed_variable">this.</span>_<span class="keyword">events</span> = <span class="cell">{}</span>);</code></pre>
+<p>initialize the _events object. Then</p>
+<pre><code> var <span class="keyword">events</span> = <span class="transposed_variable">this.</span>_<span class="keyword">events</span><span class="matrix">[name]</span> || (<span class="transposed_variable">this.</span>_<span class="keyword">events</span><span class="matrix">[name]</span> = <span class="matrix">[]</span>);</code></pre>
+<p>will use the event name as the key to initialize a events array.<br>At last,</p>
+<pre><code><span class="tag">events</span><span class="class">.push</span>(<span class="rules">{<span class="rule"><span class="attribute">callback</span>:<span class="value"> callback, context: context, ctx: context || this}</span></span></span>)</code></pre>
+<p>push a object with callback function and context and return this.</p>
+]]></content>
+  </entry>
   <entry>
     <title type="html"><![CDATA[Reading the backbone source code]]></title>
     <link href="http://yijingbai.github.io/blog/2014/05/23/reading-the-backbone-source-code/"/>
