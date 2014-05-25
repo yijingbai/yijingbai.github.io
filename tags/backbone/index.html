@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2014 | Yijing's Blog</title>
+  <title>backbone | Yijing's Blog</title>
   <meta name="author" content="YiJing Bai">
 
   
@@ -42,7 +42,7 @@
   <div id="content" class="inner">
 
 <header id="archive-header">
-  <h1 class="alignleft">Archives: 2014</h1>
+  <h1 class="alignleft">Tag: backbone</h1>
   <div class="search alignright">
     <form action="http://google.com/search" method="get" accept-charset="utf-8">
       <input type="search" name="q" results="0" placeholder="Search">
@@ -445,105 +445,6 @@ trigger: function(<span class="property">name</span>) {
       
   <div class="tags">
 <a href="/blog/tags/backbone/">backbone</a><a href="/blog/tags/javascript/">javascript</a></div>
-
-      
-    </footer>
-    
-  </div>
-  
-</article>
-  
-    <article class="post">
-  
-  <header>
-    
-  
-    <h1 class="title"><a href="/blog/2014/05/21/something-about-post-json-using-ajax-in-jquery/">Something about post json using .ajax in jquery</a></h1>
-  
-
-    <time datetime="2014-05-21T14:56:48.000Z">
-  <span class="day">21</span><span class="month">May</span>
-</time>
-  </header>
-  <div class="entry-content">
-    
-      <p>When I try to use jquery&#39;s <code>$.ajax</code> method post a json to server, I found a strange phenomenon that if I pass the json object as data, it will post it as a form string. For example, the object I want to post is:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-</pre></td><td class="code"><pre><span class="rules">{
-    <span class="rule"><span class="attribute">name</span>:<span class="value"> <span class="string">'yijing'</span>,
-    age:  <span class="string">'22'</span>,
-    like: [<span class="string">'computer'</span>, <span class="string">'swimming'</span>]
-}</span></span></span>
-</pre></td></tr></table></figure>
-
-<p>the array in it will transform to a string thing:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre><span class="attribute">like[]</span>: <span class="string">'computer'</span>
-<span class="attribute">like[]</span>: <span class="string">'swiming'</span>
-</pre></td></tr></table></figure>
-
-<p>when server side parse it as a json string, it will cause an error.</p>
-<p>The problem is that you can not directly pass the object to the data field of .ajax()&#39;s config, you should covert it to a json string:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="filename">JSON.stringify(dataobject)
-</pre></td></tr></table></figure>
-
-<p>What‘s more, if you want post a json to server, don’t forget to add contentType in the config:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>contentType:"application/json;char<span class="operator"><span class="keyword">set</span>=utf-<span class="number">8</span><span class="string">"
-</pre></td></tr></table></figure>
-
-<p>because the .ajax method automatically set it as form if you don&#39;t pass it.</p>
-
-    
-    
-    <footer class="meta">
-      
-      
-  <div class="tags">
-<a href="/blog/tags/jquery/">jquery</a><a href="/blog/tags/ajax/">ajax</a></div>
-
-      
-    </footer>
-    
-  </div>
-  
-</article>
-  
-    <article class="post">
-  
-  <header>
-    
-  
-    <h1 class="title"><a href="/blog/2014/05/19/thinking-of-my-future/">Thinking of my FUTURE</a></h1>
-  
-
-    <time datetime="2014-05-19T13:32:37.000Z">
-  <span class="day">19</span><span class="month">May</span>
-</time>
-  </header>
-  <div class="entry-content">
-    
-      <p>I am in a decadent status for about 1 month.</p>
-<p>In This period of time, I have always thought about my future and what way I want to go.</p>
-<p>There are many things I want to do, for example, running everyday, writing blog everyday, push to github everyday, use GTD method to manage my work and study.</p>
-<p>But I always can&#39;t keep doing it. These things are great, but I stopped.</p>
-<p>So I think what the most important thing is that, how many things you want to do is not the important part. What the most important thing is that how many things you can keep doing everyday. </p>
-<p>Done one thing is better than think 10 things.</p>
-<p>Just Do It.</p>
-
-    
-    
-    <footer class="meta">
-      
-      
-  <div class="tags">
-<a href="/blog/tags/self development/">self development</a></div>
 
       
     </footer>

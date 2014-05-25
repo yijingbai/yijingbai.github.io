@@ -3,12 +3,9 @@
 <head>
   <meta charset="utf-8">
   
-  <title>A introduce to Backbone | Yijing's Blog</title>
+  <title>ajax | Yijing's Blog</title>
   <meta name="author" content="YiJing Bai">
 
-  
-  <meta name="description" content="Backbone is a Simple and Powerful framwork for the web app have a lot of data models, and have a lot of operations on it.
-The core class for backbone ">
   
   
 
@@ -42,54 +39,66 @@ The core class for backbone ">
     
   </ul>
 </nav></header>
-  <div id="content" class="inner"><article class="post">
+  <div id="content" class="inner">
+
+<header id="archive-header">
+  <h1 class="alignleft">Tag: ajax</h1>
+  <div class="search alignright">
+    <form action="http://google.com/search" method="get" accept-charset="utf-8">
+      <input type="search" name="q" results="0" placeholder="Search">
+      <input type="hidden" name="q" value="site:yijingbai.github.io/blog">
+    </form>
+  </div>
+</header>
+
+
+  
+    <article class="post">
   
   <header>
     
   
-    <h1 class="title">A introduce to Backbone</h1>
+    <h1 class="title"><a href="/blog/2014/05/21/something-about-post-json-using-ajax-in-jquery/">Something about post json using .ajax in jquery</a></h1>
   
 
-    <time datetime="2014-05-22T15:19:01.000Z">
-  <span class="day">22</span><span class="month">May</span>
+    <time datetime="2014-05-21T14:56:48.000Z">
+  <span class="day">21</span><span class="month">May</span>
 </time>
   </header>
   <div class="entry-content">
     
-      <p>Backbone is a Simple and Powerful framwork for the web app have a lot of data models, and have a lot of operations on it.</p>
-<p>The core class for backbone is Model, Event, Collection.</p>
-<h1>Model</h1>
-<p>The Model is used to define the model used in the app.<br>like:</p>
+      <p>When I try to use jquery&#39;s <code>$.ajax</code> method post a json to server, I found a strange phenomenon that if I pass the json object as data, it will post it as a form string. For example, the object I want to post is:</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
 5
-6
-7
-8
-</pre></td><td class="code"><pre>var Note = Backbone.Model.extend({
-  initialize: <span class="keyword">function</span>() { <span class="keyword">...</span> },
-  author: <span class="keyword">function</span>() { <span class="keyword">...</span> },
-  coordinates: <span class="keyword">function</span>() { <span class="keyword">...</span> },
-  allowedToEdit: <span class="keyword">function</span>(account) {
-    <span class="keyword">return</span> true;
-  }
-});
+</pre></td><td class="code"><pre><span class="rules">{
+    <span class="rule"><span class="attribute">name</span>:<span class="value"> <span class="string">'yijing'</span>,
+    age:  <span class="string">'22'</span>,
+    like: [<span class="string">'computer'</span>, <span class="string">'swimming'</span>]
+}</span></span></span>
 </pre></td></tr></table></figure>
 
-<p><code>Backbone.Model.extend</code> is a method that can let you extend the default model of backbone and create your own one. By doing this, you can overwrite the function of it as well as add some new one.</p>
-<p>After define a model, you can create it your object use it.Just simply pass the object to it.</p>
+<p>the array in it will transform to a string thing:</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
-3
-4
-</pre></td><td class="code"><pre><span class="tag">new</span> <span class="tag">Note</span>(<span class="rules">{
-  <span class="rule"><span class="attribute">title</span>:<span class="value"> <span class="string">"One Thousand and One Nights"</span>,
-  author: <span class="string">"Scheherazade"</span>
-}</span></span></span>);
+</pre></td><td class="code"><pre><span class="attribute">like[]</span>: <span class="string">'computer'</span>
+<span class="attribute">like[]</span>: <span class="string">'swiming'</span>
 </pre></td></tr></table></figure>
 
+<p>when server side parse it as a json string, it will cause an error.</p>
+<p>The problem is that you can not directly pass the object to the data field of .ajax()&#39;s config, you should covert it to a json string:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="filename">JSON.stringify(dataobject)
+</pre></td></tr></table></figure>
+
+<p>What‘s more, if you want post a json to server, don’t forget to add contentType in the config:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>contentType:"application/json;char<span class="operator"><span class="keyword">set</span>=utf-<span class="number">8</span><span class="string">"
+</pre></td></tr></table></figure>
+
+<p>because the .ajax method automatically set it as form if you don&#39;t pass it.</p>
 
     
     
@@ -97,29 +106,22 @@ The core class for backbone ">
       
       
   <div class="tags">
-<a href="/blog/tags/backbone/">backbone</a><a href="/blog/tags/javascript/">javascript</a></div>
+<a href="/blog/tags/jquery/">jquery</a><a href="/blog/tags/ajax/">ajax</a></div>
 
       
     </footer>
     
   </div>
   
-  <!-- Duoshuo Comment BEGIN -->
-	<div class="ds-thread"></div>
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"yijingbai"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = 'http://static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		|| document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-<!-- Duoshuo Comment END -->
+</article>
   
-</article></div>
+
+  <nav id="pagenavi">
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div>
   <footer id="footer" class="inner"><div class="social alignright">
   
     <a class="facebook" href="http://www.facebook.com/yijing.bai" title="Facebook">Facebook</a>

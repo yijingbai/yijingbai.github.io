@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Full-Stack Developer, Hackathon Lover]]></subtitle>
   <link href="http://yijingbai.github.io/blog/atom.xml" rel="self"/>
   <link href="http://yijingbai.github.io/blog"/>
-  <updated>2014-05-25T14:41:27.424Z</updated>
+  <updated>2014-05-25T14:47:32.668Z</updated>
   <id>http://yijingbai.github.io/blog/</id>
   <author>
     <name><![CDATA[YiJing Bai]]></name>
@@ -15,7 +15,7 @@
     <link href="http://yijingbai.github.io/blog/2014/05/25/reading-the-backbone-source-code-(3)/"/>
     <id>http://yijingbai.github.io/blog/2014/05/25/reading-the-backbone-source-code-(3)/</id>
     <published>2014-05-25T14:23:41.000Z</published>
-    <updated>2014-05-25T14:41:15.000Z</updated>
+    <updated>2014-05-25T14:45:18.000Z</updated>
     <content type="html"><![CDATA[<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -118,14 +118,15 @@ trigger: function(<span class="property">name</span>) {
   }</code></pre>
 <p>judge that when the name, callback, context is all null, then assign the _event to void 0; <em>I don&#39;t understand what the meaning of void 0; and what can it provide</em></p>
 ]]></content>
-    <category scheme="http://yijingbai.github.io/blog/tags/javascript, backbone/" term="javascript, backbone"/>
+    <category scheme="http://yijingbai.github.io/blog/tags/javascript/" term="javascript"/>
+    <category scheme="http://yijingbai.github.io/blog/tags/backbone/" term="backbone"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[reading the backbone source code (2)]]></title>
     <link href="http://yijingbai.github.io/blog/2014/05/24/reading-the-backbone-source-code-(2)/"/>
     <id>http://yijingbai.github.io/blog/2014/05/24/reading-the-backbone-source-code-(2)/</id>
     <published>2014-05-24T15:35:30.000Z</published>
-    <updated>2014-05-24T15:43:27.000Z</updated>
+    <updated>2014-05-25T14:46:45.000Z</updated>
     <content type="html"><![CDATA[<p>Let continute reading the backboen code. In event class, there is a on function:</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -154,13 +155,15 @@ trigger: function(<span class="property">name</span>) {
 <pre><code><span class="tag">events</span><span class="class">.push</span>(<span class="rules">{<span class="rule"><span class="attribute">callback</span>:<span class="value"> callback, context: context, ctx: context || this}</span></span></span>)</code></pre>
 <p>push a object with callback function and context and return this.</p>
 ]]></content>
+    <category scheme="http://yijingbai.github.io/blog/tags/javascript/" term="javascript"/>
+    <category scheme="http://yijingbai.github.io/blog/tags/backbone/" term="backbone"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[Reading the Backbone source code]]></title>
     <link href="http://yijingbai.github.io/blog/2014/05/23/reading-the-backbone-source-code/"/>
     <id>http://yijingbai.github.io/blog/2014/05/23/reading-the-backbone-source-code/</id>
     <published>2014-05-23T14:13:31.000Z</published>
-    <updated>2014-05-25T14:23:18.000Z</updated>
+    <updated>2014-05-25T14:45:31.000Z</updated>
     <content type="html"><![CDATA[<p>From this post, I will read backbone&#39;s source code and write down my thinking.<br>At the beginning of the file,</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -280,14 +283,15 @@ trigger: function(<span class="property">name</span>) {
 }</code></pre>
 <p>and action is ‘on’, the statement will be<br>obj[‘on’].apply(obj, [‘on’, function, ])</p>
 ]]></content>
-    <category scheme="http://yijingbai.github.io/blog/tags/javascript, backbone/" term="javascript, backbone"/>
+    <category scheme="http://yijingbai.github.io/blog/tags/javascript/" term="javascript"/>
+    <category scheme="http://yijingbai.github.io/blog/tags/backbone/" term="backbone"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[A introduce to Backbone]]></title>
     <link href="http://yijingbai.github.io/blog/2014/05/22/a-introduce-to-backbone/"/>
     <id>http://yijingbai.github.io/blog/2014/05/22/a-introduce-to-backbone/</id>
     <published>2014-05-22T15:19:01.000Z</published>
-    <updated>2014-05-22T15:25:33.000Z</updated>
+    <updated>2014-05-25T14:45:50.000Z</updated>
     <content type="html"><![CDATA[<p>Backbone is a Simple and Powerful framwork for the web app have a lot of data models, and have a lot of operations on it.</p>
 <p>The core class for backbone is Model, Event, Collection.</p>
 <h1>Model</h1>
@@ -323,14 +327,15 @@ trigger: function(<span class="property">name</span>) {
 </pre></td></tr></table></figure>
 
 ]]></content>
-    <category scheme="http://yijingbai.github.io/blog/tags/backbone, javascript/" term="backbone, javascript"/>
+    <category scheme="http://yijingbai.github.io/blog/tags/backbone/" term="backbone"/>
+    <category scheme="http://yijingbai.github.io/blog/tags/javascript/" term="javascript"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[Something about post json using .ajax in jquery]]></title>
     <link href="http://yijingbai.github.io/blog/2014/05/21/something-about-post-json-using-ajax-in-jquery/"/>
     <id>http://yijingbai.github.io/blog/2014/05/21/something-about-post-json-using-ajax-in-jquery/</id>
     <published>2014-05-21T14:56:48.000Z</published>
-    <updated>2014-05-21T15:07:10.000Z</updated>
+    <updated>2014-05-25T14:46:58.000Z</updated>
     <content type="html"><![CDATA[<p>When I try to use jquery&#39;s <code>$.ajax</code> method post a json to server, I found a strange phenomenon that if I pass the json object as data, it will post it as a form string. For example, the object I want to post is:</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -364,14 +369,15 @@ trigger: function(<span class="property">name</span>) {
 
 <p>because the .ajax method automatically set it as form if you don&#39;t pass it.</p>
 ]]></content>
-    <category scheme="http://yijingbai.github.io/blog/tags/jquery ajax/" term="jquery ajax"/>
+    <category scheme="http://yijingbai.github.io/blog/tags/jquery/" term="jquery"/>
+    <category scheme="http://yijingbai.github.io/blog/tags/ajax/" term="ajax"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[Thinking of my FUTURE]]></title>
     <link href="http://yijingbai.github.io/blog/2014/05/19/thinking-of-my-future/"/>
     <id>http://yijingbai.github.io/blog/2014/05/19/thinking-of-my-future/</id>
     <published>2014-05-19T13:32:37.000Z</published>
-    <updated>2014-05-21T15:18:18.000Z</updated>
+    <updated>2014-05-25T14:47:13.000Z</updated>
     <content type="html"><![CDATA[<p>I am in a decadent status for about 1 month.</p>
 <p>In This period of time, I have always thought about my future and what way I want to go.</p>
 <p>There are many things I want to do, for example, running everyday, writing blog everyday, push to github everyday, use GTD method to manage my work and study.</p>
@@ -380,13 +386,14 @@ trigger: function(<span class="property">name</span>) {
 <p>Done one thing is better than think 10 things.</p>
 <p>Just Do It.</p>
 ]]></content>
+    <category scheme="http://yijingbai.github.io/blog/tags/self development/" term="self development"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[a new way to use _.template]]></title>
     <link href="http://yijingbai.github.io/blog/2014/05/19/a-new-way-to-use-_template/"/>
     <id>http://yijingbai.github.io/blog/2014/05/19/a-new-way-to-use-_template/</id>
     <published>2014-05-19T13:15:05.000Z</published>
-    <updated>2014-05-19T13:23:27.000Z</updated>
+    <updated>2014-05-25T14:46:05.000Z</updated>
     <content type="html"><![CDATA[<p>Today, I decided to use Backbone to write a new webapp. Then I read the document of it, and found a interesting technique to use <code>_.template</code> of <code>underscore.js</code>.</p>
 <p>The old way I use it is like that:</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -533,6 +540,8 @@ trigger: function(<span class="property">name</span>) {
 
 <p>Beautiful, isn&#39;t it ?</p>
 ]]></content>
+    <category scheme="http://yijingbai.github.io/blog/tags/javascript/" term="javascript"/>
+    <category scheme="http://yijingbai.github.io/blog/tags/backbone/" term="backbone"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[how to use django-RESTful api framework]]></title>
@@ -607,17 +616,18 @@ trigger: function(<span class="property">name</span>) {
     <link href="http://yijingbai.github.io/blog/2013/11/08/wating-for-my-jingjs-buddy/"/>
     <id>http://yijingbai.github.io/blog/2013/11/08/wating-for-my-jingjs-buddy/</id>
     <published>2013-11-08T13:05:25.000Z</published>
-    <updated>2013-11-08T16:32:00.000Z</updated>
+    <updated>2014-05-25T14:47:23.000Z</updated>
     <content type="html"><![CDATA[<p>I will be a volunteer of JingJS during this weekend and I am buddy of a foreign speaker, nick.<br>Now I am wating for him, and hope to see him later~ lol<br><img src="http://ww2.sinaimg.cn/large/74007c8ejw1eae22tj9nej21kw16odsh.jpg" alt=""></p>
 ]]></content>
-    <category scheme="http://yijingbai.github.io/blog/tags/conference social/" term="conference social"/>
+    <category scheme="http://yijingbai.github.io/blog/tags/conference/" term="conference"/>
+    <category scheme="http://yijingbai.github.io/blog/tags/social/" term="social"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[How to define __unicode__ for django model]]></title>
     <link href="http://yijingbai.github.io/blog/2013/11/08/how-to-define-unicode-function-for-django-model/"/>
     <id>http://yijingbai.github.io/blog/2013/11/08/how-to-define-unicode-function-for-django-model/</id>
     <published>2013-11-08T07:49:16.000Z</published>
-    <updated>2013-11-08T08:28:25.000Z</updated>
+    <updated>2014-05-25T14:46:28.000Z</updated>
     <content type="html"><![CDATA[<p>Today I wrote a simple model using django, to make it display more friendly, we have to implement a __unicode__  function like this:</p>
 <figure class="highlight lang-python"><table><tr><td class="gutter"><pre>1
 2
@@ -658,14 +668,15 @@ trigger: function(<span class="property">name</span>) {
 
 <p><strong>remember add u</strong> before “”“, and the format in ”“” “”&quot; will be saved,so we do not need to write \t or \n etc. anymore.</p>
 ]]></content>
-    <category scheme="http://yijingbai.github.io/blog/tags/python django/" term="python django"/>
+    <category scheme="http://yijingbai.github.io/blog/tags/python/" term="python"/>
+    <category scheme="http://yijingbai.github.io/blog/tags/django/" term="django"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[Hexo configuration]]></title>
     <link href="http://yijingbai.github.io/blog/2013/11/07/hexo-使用配置/"/>
     <id>http://yijingbai.github.io/blog/2013/11/07/hexo-使用配置/</id>
     <published>2013-11-07T12:59:00.000Z</published>
-    <updated>2013-12-03T16:24:10.000Z</updated>
+    <updated>2014-05-25T14:46:21.000Z</updated>
     <content type="html"><![CDATA[<p>When using Hexo, especially it is deployed on a second directory, we should not only change following attribute in _config.yml</p>
 <pre><code><span class="title">url</span>:
 <span class="title">root</span>:</code></pre>
@@ -677,7 +688,8 @@ trigger: function(<span class="property">name</span>) {
 <pre><code>themes/theme name/<span class="filename">_config.yml</code></pre>
 <p>if you forget that, the js, css file in the template will not be loaded successfully.</p>
 ]]></content>
-    <category scheme="http://yijingbai.github.io/blog/tags/Hexo blog/" term="Hexo blog"/>
+    <category scheme="http://yijingbai.github.io/blog/tags/Hexo/" term="Hexo"/>
+    <category scheme="http://yijingbai.github.io/blog/tags/blog/" term="blog"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[hello world]]></title>
