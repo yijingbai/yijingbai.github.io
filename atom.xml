@@ -4,12 +4,122 @@
   <subtitle><![CDATA[Full-Stack Developer, Hackathon Lover]]></subtitle>
   <link href="http://yijingbai.github.io/blog/atom.xml" rel="self"/>
   <link href="http://yijingbai.github.io/blog"/>
-  <updated>2014-05-24T15:46:43.282Z</updated>
+  <updated>2014-05-25T14:41:27.424Z</updated>
   <id>http://yijingbai.github.io/blog/</id>
   <author>
     <name><![CDATA[YiJing Bai]]></name>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[reading the backbone source code (3)]]></title>
+    <link href="http://yijingbai.github.io/blog/2014/05/25/reading-the-backbone-source-code-(3)/"/>
+    <id>http://yijingbai.github.io/blog/2014/05/25/reading-the-backbone-source-code-(3)/</id>
+    <published>2014-05-25T14:23:41.000Z</published>
+    <updated>2014-05-25T14:41:15.000Z</updated>
+    <content type="html"><![CDATA[<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="code"><pre>    <span class="regexp">//</span> Bind an event to only be triggered a single time. After the first time
+    <span class="regexp">//</span> the callback <span class="keyword">is</span> invoked, it will be removed.
+    once: <span class="reserved">function</span>(name, callback, context) {
+      <span class="keyword">if</span> (!eventsApi(<span class="keyword">this</span>, <span class="string">'once'</span>, name, [callback, context]) || !callback) <span class="keyword">return</span> <span class="keyword">this</span>;
+      <span class="reserved">var</span> self = <span class="keyword">this</span>;
+      <span class="reserved">var</span> once = _.once(<span class="reserved">function</span>() {
+        self.<span class="literal">off</span>(name, once);
+        callback.apply(<span class="keyword">this</span>, arguments);
+      });
+      once._callback = callback;
+      <span class="keyword">return</span> <span class="keyword">this</span>.<span class="literal">on</span>(name, once, context);
+    },
+</pre></td></tr></table></figure>
+
+<p>As is wrote in comment, once function will bind an event that will only be triggered a single time.</p>
+<pre><code><span class="function"><span class="title">if</span> <span class="params">(!<span class="function_name">eventsApi</span>(this, 'once', name, [callback, context]) || !callback)</span> <span class="title">return</span> <span class="title">this</span>;</code></pre>
+<p>This code is judge whether the parameter can bind the event.<br>Then,</p>
+<pre><code>var once = _<span class="preprocessor">.once</span>(function() {
+        self<span class="preprocessor">.off</span>(name, once)<span class="comment">;</span>
+        callback<span class="preprocessor">.apply</span>(this, arguments)<span class="comment">;</span>
+      })<span class="comment">;</span></code></pre>
+<p>This code use a function in underscore.js, _.once function. The document is like the following:</p>
+<pre><code>_.once(<span class="keyword">function</span>) 
+Creates a version <span class="keyword">of</span> the <span class="function"><span class="keyword">function</span> <span class="title">that</span> <span class="title">can</span> <span class="title">only</span> <span class="title">be</span> <span class="title">called</span> <span class="title">one</span> <span class="title">time</span>. <span class="title">Repeated</span> <span class="title">calls</span> <span class="title">to</span> <span class="title">the</span> <span class="title">modified</span> <span class="title">function</span> <span class="title">will</span> <span class="title">have</span> <span class="title">no</span> <span class="title">effect</span>, <span class="title">returning</span> <span class="title">the</span> <span class="title">value</span> <span class="title">from</span> <span class="title">the</span> <span class="title">original</span> <span class="title">call</span>. <span class="title">Useful</span> <span class="title">for</span> <span class="title">initialization</span> <span class="title">functions</span>, <span class="title">instead</span> <span class="title">of</span> <span class="title">having</span> <span class="title">to</span> <span class="title">set</span> <span class="title">a</span> <span class="title">boolean</span> <span class="title">flag</span> <span class="title">and</span> <span class="title">then</span> <span class="title">check</span> <span class="title">it</span> <span class="title">later</span>.</code></pre>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre>var initialize = _<span class="preprocessor">.once</span>(createApplication)<span class="comment">;</span>
+initialize()<span class="comment">;</span>
+initialize()<span class="comment">;</span>
+// Application is only created once.
+</pre></td></tr></table></figure>
+
+<p>this api will generate a function that can only be called once. In this function, it will call <code>self.off</code> function to unbind the event then apply this on the callback function. After this two statement, there will be no event binded on this object.</p>
+<p>the off function is this:</p>
+<pre><code>// Remove one <span class="keyword">or</span> many callbacks. If `context` <span class="keyword">is</span> null, removes all
+// callbacks <span class="keyword">with</span> <span class="keyword">that</span> function. If `callback` <span class="keyword">is</span> null, removes all
+// callbacks <span class="keyword">for</span> <span class="keyword">the</span> event. If `<span class="property">name</span>` <span class="keyword">is</span> null, removes all bound
+// callbacks <span class="keyword">for</span> all events.
+off: function(<span class="property">name</span>, callback, context) {
+  var retain, ev, events, names, i, l, j, k;
+  <span class="keyword">if</span> (!this._events || !eventsApi(this, 'off', <span class="property">name</span>, [callback, context])) <span class="constant">return</span> this;
+  <span class="keyword">if</span> (!<span class="property">name</span> &amp;&amp; !callback &amp;&amp; !context) {
+    this._events = void <span class="number">0</span>;
+<span class="command">    return</span> this;
+  }
+  names = <span class="property">name</span> ? [<span class="property">name</span>] : _.keys(this._events);
+  <span class="keyword">for</span> (i = <span class="number">0</span>, l = names.<span class="property">length</span>; i &lt; l; i++) {
+    <span class="property">name</span> = names[i];
+    <span class="keyword">if</span> (events = this._events[<span class="property">name</span>]) {
+      this._events[<span class="property">name</span>] = retain = [];
+      <span class="keyword">if</span> (callback || context) {
+        <span class="keyword">for</span> (j = <span class="number">0</span>, k = events.<span class="property">length</span>; j &lt; k; j++) {
+          ev = events[j];
+          <span class="keyword">if</span> ((callback &amp;&amp; callback !== ev.callback &amp;&amp; callback !== ev.callback._callback) ||
+              (context &amp;&amp; context !== ev.context)) {
+            retain.push(ev);
+          }
+        }
+      }
+      <span class="keyword">if</span> (!retain.<span class="property">length</span>) delete this._events[<span class="property">name</span>];
+    }
+  }
+<span class="command">
+  return</span> this;
+},
+
+// Trigger one <span class="keyword">or</span> many events, firing all bound callbacks. Callbacks are
+// passed <span class="keyword">the</span> same arguments <span class="keyword">as</span> `trigger` <span class="keyword">is</span>, <span class="keyword">apart from</span> <span class="keyword">the</span> event <span class="property">name</span>
+// (unless you're listening <span class="function_start"><span class="keyword">on</span> </span>`<span class="string">"all"</span>`, which will cause your callback <span class="keyword">to</span>
+// receive <span class="keyword">the</span> <span class="constant">true</span> <span class="property">name</span> <span class="keyword">of</span> <span class="keyword">the</span> event <span class="keyword">as</span> <span class="keyword">the</span> <span class="keyword">first</span> argument).
+trigger: function(<span class="property">name</span>) {
+  <span class="keyword">if</span> (!this._events) <span class="constant">return</span> this;
+  var args = slice.call(arguments, <span class="number">1</span>);
+  <span class="keyword">if</span> (!eventsApi(this, 'trigger', <span class="property">name</span>, args)) <span class="constant">return</span> this;
+  var events = this._events[<span class="property">name</span>];
+  var allEvents = this._events.all;
+  <span class="keyword">if</span> (events) triggerEvents(events, args);
+  <span class="keyword">if</span> (allEvents) triggerEvents(allEvents, arguments);
+<span class="command">  return</span> this;
+},</code></pre>
+<p>```</p>
+<p>these three statement:</p>
+<pre><code><span class="function"><span class="title">if</span> <span class="params">(!name &amp;&amp; !callback &amp;&amp; !context)</span> {
+    <span class="title">this</span>._<span class="title">events</span> = <span class="title">void</span> 0;
+    <span class="title">return</span> <span class="title">this</span>;
+  }</code></pre>
+<p>judge that when the name, callback, context is all null, then assign the _event to void 0; <em>I don&#39;t understand what the meaning of void 0; and what can it provide</em></p>
+]]></content>
+    <category scheme="http://yijingbai.github.io/blog/tags/javascript, backbone/" term="javascript, backbone"/>
+  </entry>
   <entry>
     <title type="html"><![CDATA[reading the backbone source code (2)]]></title>
     <link href="http://yijingbai.github.io/blog/2014/05/24/reading-the-backbone-source-code-(2)/"/>
@@ -46,13 +156,12 @@
 ]]></content>
   </entry>
   <entry>
-    <title type="html"><![CDATA[Reading the backbone source code]]></title>
+    <title type="html"><![CDATA[Reading the Backbone source code]]></title>
     <link href="http://yijingbai.github.io/blog/2014/05/23/reading-the-backbone-source-code/"/>
     <id>http://yijingbai.github.io/blog/2014/05/23/reading-the-backbone-source-code/</id>
-    <published>2014-05-23T14:41:36.000Z</published>
-    <updated>2014-05-23T16:03:15.000Z</updated>
-    <content type="html"><![CDATA[<p>From this post, I will read backbone&#39;s source code and write down my thinking.</p>
-<p>At the beginning of the file,</p>
+    <published>2014-05-23T14:13:31.000Z</published>
+    <updated>2014-05-25T14:23:18.000Z</updated>
+    <content type="html"><![CDATA[<p>From this post, I will read backbone&#39;s source code and write down my thinking.<br>At the beginning of the file,</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -99,11 +208,7 @@
 
 <p>There implement factory method here. First define a factory parameter, and then passed a anoynomous function with parameter root, Backbone, _, $. These things are the dependency of backbone.</p>
 <p>These use three judgement to handle three situations.</p>
-<ol>
-<li>when there have a define function, which meaning this web app may use require.js, and provide AMD, use define function and load the module.</li>
-<li>if there have exports, it make use node.js or common.js, so jquery is not needed.</li>
-<li>if in normal browser, juse need to seet it as gloabl variable.</li>
-</ol>
+<p>when there have a define function, which meaning this web app may use require.js, and provide AMD, use define function and load the module.<br>if there have exports, it make use node.js or common.js, so jquery is not needed.<br>if in normal browser, juse need to seet it as gloabl variable.</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -162,17 +267,18 @@
   };
 </pre></td></tr></table></figure>
 
-<p>This block of code is in the Event. It implement the facny feature of Event API like “change title”.<br>to Handle event maps, </p>
+<p>This block of code is in the Event. It implement the facny feature of Event API like “change title”.<br>to Handle event maps,</p>
 <pre><code><span class="function"><span class="title">for</span> <span class="params">(var key in name)</span> {
     <span class="title">obj</span>[<span class="title">action</span>].<span class="title">apply</span><span class="params">(obj, [key, name[key]].<span class="function_name">concat</span>(rest))</span>;
 }</code></pre>
-<p>it traverse the key on event maps object concat the array [key, name[key]]  and rest then get a array: [key, name[key], callback, context, etc..], then use apply to call it on obj, and send this array as parameter. for example, if pass a</p>
+<p>it traverse the key on event maps object concat the array [key, name[key]] and rest then get a array: [key, name[key], callback, context, etc..], then use apply to call it on obj, and send this array as parameter. for example, if pass a</p>
 <pre><code><span class="rules">{
-    <span class="rule"><span class="attribute">change</span>:<span class="value"> function () {
+    <span class="rule">{
+        <span class="attribute">change</span>:<span class="value"> function () {
         console.<span class="function">log(<span class="string">'hello world'</span>)</span>
     }</span></span></span>
 }</code></pre>
-<p>and action is ‘on’, the statement will bi<br>obj[‘on’].apply(obj, [‘on’, function, ])</p>
+<p>and action is ‘on’, the statement will be<br>obj[‘on’].apply(obj, [‘on’, function, ])</p>
 ]]></content>
     <category scheme="http://yijingbai.github.io/blog/tags/javascript, backbone/" term="javascript, backbone"/>
   </entry>

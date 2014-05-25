@@ -3,12 +3,11 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Reading the backbone source code | Yijing's Blog</title>
+  <title>Reading the Backbone source code | Yijing's Blog</title>
   <meta name="author" content="YiJing Bai">
 
   
-  <meta name="description" content="From this post, I will read backbone&amp;#39;s source code and write down my thinking.
-At the beginning of the file,
+  <meta name="description" content="From this post, I will read backbone&amp;#39;s source code and write down my thinking.At the beginning of the file,
 1
 2
 3
@@ -24,7 +23,7 @@ At the beginning of the file,
 13
 14
 15
-1">
+16">
   
   
 
@@ -63,17 +62,16 @@ At the beginning of the file,
   <header>
     
   
-    <h1 class="title">Reading the backbone source code</h1>
+    <h1 class="title">Reading the Backbone source code</h1>
   
 
-    <time datetime="2014-05-23T14:41:36.000Z">
+    <time datetime="2014-05-23T14:13:31.000Z">
   <span class="day">23</span><span class="month">May</span>
 </time>
   </header>
   <div class="entry-content">
     
-      <p>From this post, I will read backbone&#39;s source code and write down my thinking.</p>
-<p>At the beginning of the file,</p>
+      <p>From this post, I will read backbone&#39;s source code and write down my thinking.<br>At the beginning of the file,</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -120,11 +118,7 @@ At the beginning of the file,
 
 <p>There implement factory method here. First define a factory parameter, and then passed a anoynomous function with parameter root, Backbone, _, $. These things are the dependency of backbone.</p>
 <p>These use three judgement to handle three situations.</p>
-<ol>
-<li>when there have a define function, which meaning this web app may use require.js, and provide AMD, use define function and load the module.</li>
-<li>if there have exports, it make use node.js or common.js, so jquery is not needed.</li>
-<li>if in normal browser, juse need to seet it as gloabl variable.</li>
-</ol>
+<p>when there have a define function, which meaning this web app may use require.js, and provide AMD, use define function and load the module.<br>if there have exports, it make use node.js or common.js, so jquery is not needed.<br>if in normal browser, juse need to seet it as gloabl variable.</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -183,17 +177,18 @@ At the beginning of the file,
   };
 </pre></td></tr></table></figure>
 
-<p>This block of code is in the Event. It implement the facny feature of Event API like “change title”.<br>to Handle event maps, </p>
+<p>This block of code is in the Event. It implement the facny feature of Event API like “change title”.<br>to Handle event maps,</p>
 <pre><code><span class="function"><span class="title">for</span> <span class="params">(var key in name)</span> {
     <span class="title">obj</span>[<span class="title">action</span>].<span class="title">apply</span><span class="params">(obj, [key, name[key]].<span class="function_name">concat</span>(rest))</span>;
 }</code></pre>
-<p>it traverse the key on event maps object concat the array [key, name[key]]  and rest then get a array: [key, name[key], callback, context, etc..], then use apply to call it on obj, and send this array as parameter. for example, if pass a</p>
+<p>it traverse the key on event maps object concat the array [key, name[key]] and rest then get a array: [key, name[key], callback, context, etc..], then use apply to call it on obj, and send this array as parameter. for example, if pass a</p>
 <pre><code><span class="rules">{
-    <span class="rule"><span class="attribute">change</span>:<span class="value"> function () {
+    <span class="rule">{
+        <span class="attribute">change</span>:<span class="value"> function () {
         console.<span class="function">log(<span class="string">'hello world'</span>)</span>
     }</span></span></span>
 }</code></pre>
-<p>and action is ‘on’, the statement will bi<br>obj[‘on’].apply(obj, [‘on’, function, ])</p>
+<p>and action is ‘on’, the statement will be<br>obj[‘on’].apply(obj, [‘on’, function, ])</p>
 
     
     
