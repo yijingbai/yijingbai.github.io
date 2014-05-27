@@ -4,12 +4,70 @@
   <subtitle><![CDATA[Full-Stack Developer, Hackathon Lover]]></subtitle>
   <link href="http://yijingbai.github.io/blog/atom.xml" rel="self"/>
   <link href="http://yijingbai.github.io/blog"/>
-  <updated>2014-05-25T14:47:32.668Z</updated>
+  <updated>2014-05-27T13:35:34.680Z</updated>
   <id>http://yijingbai.github.io/blog/</id>
   <author>
     <name><![CDATA[YiJing Bai]]></name>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[Reading backbone source code]]></title>
+    <link href="http://yijingbai.github.io/blog/2014/05/27/reading-backbone-source-code/"/>
+    <id>http://yijingbai.github.io/blog/2014/05/27/reading-backbone-source-code/</id>
+    <published>2014-05-27T13:24:27.000Z</published>
+    <updated>2014-05-27T13:35:23.000Z</updated>
+    <content type="html"><![CDATA[<p>Today, we will talk about trigger and stopListning function of backbone.<br>trigger function in backbone&#39;s event class is to fire all bound callbacks.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre>trigger: <span class="keyword">function</span>(name) {
+      <span class="keyword">if</span> (!<span class="keyword">this</span>._events) <span class="keyword">return</span> <span class="keyword">this</span>;
+      <span class="keyword">var</span> args = slice.call(arguments, <span class="number">1</span>);
+      <span class="keyword">if</span> (!eventsApi(<span class="keyword">this</span>, <span class="string">'trigger'</span>, name, args)) <span class="keyword">return</span> <span class="keyword">this</span>;
+      <span class="keyword">var</span> events = <span class="keyword">this</span>._events[name];
+      <span class="keyword">var</span> allEvents = <span class="keyword">this</span>._events.all;
+      <span class="keyword">if</span> (events) triggerEvents(events, args);
+      <span class="keyword">if</span> (allEvents) triggerEvents(allEvents, arguments);
+      <span class="keyword">return</span> <span class="keyword">this</span>;
+    },
+</pre></td></tr></table></figure>
+
+<pre><code>var <span class="keyword">events</span> = <span class="transposed_variable">this.</span>_<span class="keyword">events</span><span class="matrix">[name]</span>; </code></pre>
+<p>Get the event list of event <code>name</code>.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre>var triggerEvents = function(events, args) {
+    var ev, i = -<span class="number">1</span>, l = events<span class="variable">.length</span>, a1 = args[<span class="number">0</span>], a2 = args[<span class="number">1</span>], a3 = args[<span class="number">2</span>];
+    <span class="keyword">switch</span> (args<span class="variable">.length</span>) {
+      <span class="keyword">case</span> <span class="number">0</span>: <span class="keyword">while</span> (++i &lt; l) (ev = events[i])<span class="variable">.callback</span><span class="variable">.call</span>(ev<span class="variable">.ctx</span>); <span class="keyword">return</span>;
+      <span class="keyword">case</span> <span class="number">1</span>: <span class="keyword">while</span> (++i &lt; l) (ev = events[i])<span class="variable">.callback</span><span class="variable">.call</span>(ev<span class="variable">.ctx</span>, a1); <span class="keyword">return</span>;
+      <span class="keyword">case</span> <span class="number">2</span>: <span class="keyword">while</span> (++i &lt; l) (ev = events[i])<span class="variable">.callback</span><span class="variable">.call</span>(ev<span class="variable">.ctx</span>, a1, a2); <span class="keyword">return</span>;
+      <span class="keyword">case</span> <span class="number">3</span>: <span class="keyword">while</span> (++i &lt; l) (ev = events[i])<span class="variable">.callback</span><span class="variable">.call</span>(ev<span class="variable">.ctx</span>, a1, a2, a3); <span class="keyword">return</span>;
+      <span class="keyword">default</span>: <span class="keyword">while</span> (++i &lt; l) (ev = events[i])<span class="variable">.callback</span><span class="variable">.apply</span>(ev<span class="variable">.ctx</span>, args); <span class="keyword">return</span>;
+    }
+  };
+</pre></td></tr></table></figure>
+
+<p>this function is to trigger the function events with args. There use a trick that expand the args manually. Thus, when call the callback funtion. It will be faster.</p>
+]]></content>
+    <category scheme="http://yijingbai.github.io/blog/tags/javascript/" term="javascript"/>
+    <category scheme="http://yijingbai.github.io/blog/tags/backbone/" term="backbone"/>
+  </entry>
   <entry>
     <title type="html"><![CDATA[reading the backbone source code (3)]]></title>
     <link href="http://yijingbai.github.io/blog/2014/05/25/reading-the-backbone-source-code-(3)/"/>

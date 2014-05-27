@@ -45,6 +45,84 @@
   <header>
     
   
+    <h1 class="title"><a href="/blog/2014/05/27/reading-backbone-source-code/">Reading backbone source code</a></h1>
+  
+
+    <time datetime="2014-05-27T13:24:27.000Z">
+  <span class="day">27</span><span class="month">May</span>
+</time>
+  </header>
+  <div class="entry-content">
+    
+      <p>Today, we will talk about trigger and stopListning function of backbone.<br>trigger function in backbone&#39;s event class is to fire all bound callbacks.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre>trigger: <span class="keyword">function</span>(name) {
+      <span class="keyword">if</span> (!<span class="keyword">this</span>._events) <span class="keyword">return</span> <span class="keyword">this</span>;
+      <span class="keyword">var</span> args = slice.call(arguments, <span class="number">1</span>);
+      <span class="keyword">if</span> (!eventsApi(<span class="keyword">this</span>, <span class="string">'trigger'</span>, name, args)) <span class="keyword">return</span> <span class="keyword">this</span>;
+      <span class="keyword">var</span> events = <span class="keyword">this</span>._events[name];
+      <span class="keyword">var</span> allEvents = <span class="keyword">this</span>._events.all;
+      <span class="keyword">if</span> (events) triggerEvents(events, args);
+      <span class="keyword">if</span> (allEvents) triggerEvents(allEvents, arguments);
+      <span class="keyword">return</span> <span class="keyword">this</span>;
+    },
+</pre></td></tr></table></figure>
+
+<pre><code>var <span class="keyword">events</span> = <span class="transposed_variable">this.</span>_<span class="keyword">events</span><span class="matrix">[name]</span>; </code></pre>
+<p>Get the event list of event <code>name</code>.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre>var triggerEvents = function(events, args) {
+    var ev, i = -<span class="number">1</span>, l = events<span class="variable">.length</span>, a1 = args[<span class="number">0</span>], a2 = args[<span class="number">1</span>], a3 = args[<span class="number">2</span>];
+    <span class="keyword">switch</span> (args<span class="variable">.length</span>) {
+      <span class="keyword">case</span> <span class="number">0</span>: <span class="keyword">while</span> (++i &lt; l) (ev = events[i])<span class="variable">.callback</span><span class="variable">.call</span>(ev<span class="variable">.ctx</span>); <span class="keyword">return</span>;
+      <span class="keyword">case</span> <span class="number">1</span>: <span class="keyword">while</span> (++i &lt; l) (ev = events[i])<span class="variable">.callback</span><span class="variable">.call</span>(ev<span class="variable">.ctx</span>, a1); <span class="keyword">return</span>;
+      <span class="keyword">case</span> <span class="number">2</span>: <span class="keyword">while</span> (++i &lt; l) (ev = events[i])<span class="variable">.callback</span><span class="variable">.call</span>(ev<span class="variable">.ctx</span>, a1, a2); <span class="keyword">return</span>;
+      <span class="keyword">case</span> <span class="number">3</span>: <span class="keyword">while</span> (++i &lt; l) (ev = events[i])<span class="variable">.callback</span><span class="variable">.call</span>(ev<span class="variable">.ctx</span>, a1, a2, a3); <span class="keyword">return</span>;
+      <span class="keyword">default</span>: <span class="keyword">while</span> (++i &lt; l) (ev = events[i])<span class="variable">.callback</span><span class="variable">.apply</span>(ev<span class="variable">.ctx</span>, args); <span class="keyword">return</span>;
+    }
+  };
+</pre></td></tr></table></figure>
+
+<p>this function is to trigger the function events with args. There use a trick that expand the args manually. Thus, when call the callback funtion. It will be faster.</p>
+
+    
+    
+    <footer class="meta">
+      
+      
+  <div class="tags">
+<a href="/blog/tags/javascript/">javascript</a><a href="/blog/tags/backbone/">backbone</a></div>
+
+      
+    </footer>
+    
+  </div>
+  
+</article>
+
+  <article class="post">
+  
+  <header>
+    
+  
     <h1 class="title"><a href="/blog/2014/05/25/reading-the-backbone-source-code-(3)/">reading the backbone source code (3)</a></h1>
   
 
@@ -814,37 +892,6 @@ trigger: function(<span class="property">name</span>) {
       
   <div class="tags">
 <a href="/blog/tags/RESTful/">RESTful</a></div>
-
-      
-    </footer>
-    
-  </div>
-  
-</article>
-
-  <article class="post">
-  
-  <header>
-    
-  
-    <h1 class="title"><a href="/blog/2013/11/08/wating-for-my-jingjs-buddy/">Wating for my JingJS buddy</a></h1>
-  
-
-    <time datetime="2013-11-08T13:05:25.000Z">
-  <span class="day">8</span><span class="month">Nov</span>
-</time>
-  </header>
-  <div class="entry-content">
-    
-      <p>I will be a volunteer of JingJS during this weekend and I am buddy of a foreign speaker, nick.<br>Now I am wating for him, and hope to see him later~ lol<br><img src="http://ww2.sinaimg.cn/large/74007c8ejw1eae22tj9nej21kw16odsh.jpg" alt=""></p>
-
-    
-    
-    <footer class="meta">
-      
-      
-  <div class="tags">
-<a href="/blog/tags/conference/">conference</a><a href="/blog/tags/social/">social</a></div>
 
       
     </footer>

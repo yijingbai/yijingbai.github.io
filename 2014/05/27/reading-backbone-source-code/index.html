@@ -1,0 +1,180 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Reading backbone source code | Yijing's Blog</title>
+  <meta name="author" content="YiJing Bai">
+
+  
+  <meta name="description" content="Today, we will talk about trigger and stopListning function of backbone.trigger function in backbone&amp;#39;s event class is to fire all bound callbacks.">
+  
+  
+
+  <link rel="alternate" href="/blog/atom.xml" title="Yijing's Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/blog/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45569686-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+<body>
+  <header id="header" class="inner"><nav>
+  <ul>
+    
+      <li><a href="/blog/">Home</a></li>
+    
+      <li><a href="/blog/archives">Archives</a></li>
+    
+    
+  </ul>
+</nav></header>
+  <div id="content" class="inner"><article class="post">
+  
+  <header>
+    
+  
+    <h1 class="title">Reading backbone source code</h1>
+  
+
+    <time datetime="2014-05-27T13:24:27.000Z">
+  <span class="day">27</span><span class="month">May</span>
+</time>
+  </header>
+  <div class="entry-content">
+    
+      <p>Today, we will talk about trigger and stopListning function of backbone.<br>trigger function in backbone&#39;s event class is to fire all bound callbacks.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre>trigger: <span class="keyword">function</span>(name) {
+      <span class="keyword">if</span> (!<span class="keyword">this</span>._events) <span class="keyword">return</span> <span class="keyword">this</span>;
+      <span class="keyword">var</span> args = slice.call(arguments, <span class="number">1</span>);
+      <span class="keyword">if</span> (!eventsApi(<span class="keyword">this</span>, <span class="string">'trigger'</span>, name, args)) <span class="keyword">return</span> <span class="keyword">this</span>;
+      <span class="keyword">var</span> events = <span class="keyword">this</span>._events[name];
+      <span class="keyword">var</span> allEvents = <span class="keyword">this</span>._events.all;
+      <span class="keyword">if</span> (events) triggerEvents(events, args);
+      <span class="keyword">if</span> (allEvents) triggerEvents(allEvents, arguments);
+      <span class="keyword">return</span> <span class="keyword">this</span>;
+    },
+</pre></td></tr></table></figure>
+
+<pre><code>var <span class="keyword">events</span> = <span class="transposed_variable">this.</span>_<span class="keyword">events</span><span class="matrix">[name]</span>; </code></pre>
+<p>Get the event list of event <code>name</code>.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre>var triggerEvents = function(events, args) {
+    var ev, i = -<span class="number">1</span>, l = events<span class="variable">.length</span>, a1 = args[<span class="number">0</span>], a2 = args[<span class="number">1</span>], a3 = args[<span class="number">2</span>];
+    <span class="keyword">switch</span> (args<span class="variable">.length</span>) {
+      <span class="keyword">case</span> <span class="number">0</span>: <span class="keyword">while</span> (++i &lt; l) (ev = events[i])<span class="variable">.callback</span><span class="variable">.call</span>(ev<span class="variable">.ctx</span>); <span class="keyword">return</span>;
+      <span class="keyword">case</span> <span class="number">1</span>: <span class="keyword">while</span> (++i &lt; l) (ev = events[i])<span class="variable">.callback</span><span class="variable">.call</span>(ev<span class="variable">.ctx</span>, a1); <span class="keyword">return</span>;
+      <span class="keyword">case</span> <span class="number">2</span>: <span class="keyword">while</span> (++i &lt; l) (ev = events[i])<span class="variable">.callback</span><span class="variable">.call</span>(ev<span class="variable">.ctx</span>, a1, a2); <span class="keyword">return</span>;
+      <span class="keyword">case</span> <span class="number">3</span>: <span class="keyword">while</span> (++i &lt; l) (ev = events[i])<span class="variable">.callback</span><span class="variable">.call</span>(ev<span class="variable">.ctx</span>, a1, a2, a3); <span class="keyword">return</span>;
+      <span class="keyword">default</span>: <span class="keyword">while</span> (++i &lt; l) (ev = events[i])<span class="variable">.callback</span><span class="variable">.apply</span>(ev<span class="variable">.ctx</span>, args); <span class="keyword">return</span>;
+    }
+  };
+</pre></td></tr></table></figure>
+
+<p>this function is to trigger the function events with args. There use a trick that expand the args manually. Thus, when call the callback funtion. It will be faster.</p>
+
+    
+    
+    <footer class="meta">
+      
+      
+  <div class="tags">
+<a href="/blog/tags/javascript/">javascript</a><a href="/blog/tags/backbone/">backbone</a></div>
+
+      
+    </footer>
+    
+  </div>
+  
+  <!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yijingbai"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END -->
+  
+</article></div>
+  <footer id="footer" class="inner"><div class="social alignright">
+  
+    <a class="facebook" href="http://www.facebook.com/yijing.bai" title="Facebook">Facebook</a>
+  
+  
+    <a class="google" href="https://plus.google.com/100340522493033603738/posts?partnerid=gplp0" title="Google+">Google+</a>
+  
+  
+    <a class="twitter" href="http://twitter.com/@everatnight" title="Twitter">Twitter</a>
+  
+  
+    <a class="github" href="https://github.com/yijingbai" title="GitHub">GitHub</a>
+  
+  <a class="rss" href="/blog/atom.xml" title="RSS">RSS</a>
+</div>
+<p>
+  
+  &copy; 2014 YiJing Bai
+  
+</p>
+<div class="clearfix"></div></footer>
+  <script src="/blog/js/jquery.imagesloaded.min.js"></script>
+<script src="/blog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id="phasebeam">
+  <canvas></canvas>
+  <canvas></canvas>
+  <canvas></canvas>
+</div>
+<script src="/blog/js/phasebeam.js"></script>
+
+</body>
+</html>
