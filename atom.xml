@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Full-Stack Developer, Hackathon Lover]]></subtitle>
   <link href="http://yijingbai.github.io/blog/atom.xml" rel="self"/>
   <link href="http://yijingbai.github.io/blog"/>
-  <updated>2014-05-28T15:19:02.699Z</updated>
+  <updated>2014-05-28T15:40:41.481Z</updated>
   <id>http://yijingbai.github.io/blog/</id>
   <author>
     <name><![CDATA[YiJing Bai]]></name>
@@ -15,7 +15,7 @@
     <link href="http://yijingbai.github.io/blog/2014/05/28/reading-backbone-source-code(5)/"/>
     <id>http://yijingbai.github.io/blog/2014/05/28/reading-backbone-source-code(5)/</id>
     <published>2014-05-28T14:42:20.000Z</published>
-    <updated>2014-05-28T15:18:06.000Z</updated>
+    <updated>2014-05-28T15:40:36.000Z</updated>
     <content type="html"><![CDATA[<p>Today, we talk about stoplistening:</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -55,7 +55,9 @@
 
 <p>First, get all the event that listenning to now: </p>
 <pre><code><span class="keyword">var</span> listeningTo = <span class="keyword">this</span>._listeningTo;</code></pre>
-<p>Then defien a <code>listeningTo</code>list get all events that are listened to.<br>define a remove variable and assign expression:<br><code>!name &amp;&amp; !callback</code></p>
+<p>Then defien a <code>listeningTo</code>list get all events that are listened to.<br>define a remove variable and assign expression:<br><code>!name &amp;&amp; !callback</code>, which means if name is null, the remove will be callback,if callback is null remove will be true so the remove will be true only when name and callback are all nonexistent.<br>then</p>
+<pre><code>!callback &amp;&amp; <span class="keyword">typeof</span> name === <span class="string">'object'</span></code></pre>
+<p>means if callback not exist and name is object, then the callback will be this.<br>then traversal every id in listening to list and set obj to that, then call the off function to remove this object.</p>
 ]]></content>
   </entry>
   <entry>
