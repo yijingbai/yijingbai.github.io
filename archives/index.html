@@ -58,6 +58,73 @@
   <header>
     
   
+    <h1 class="title"><a href="/blog/2014/05/28/reading-backbone-source-code(5)/">Reading Backbone source code(5)</a></h1>
+  
+
+    <time datetime="2014-05-28T14:42:20.000Z">
+  <span class="day">28</span><span class="month">May</span>
+</time>
+  </header>
+  <div class="entry-content">
+    
+      <p>Today, we talk about stoplistening:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="code"><pre>    <span class="comment">// Tell this object to stop listening to either specific events ... or</span>
+    <span class="comment">// to every object it's currently listening to.</span>
+    stopListening: <span class="keyword">function</span>(obj, name, callback) {
+      <span class="keyword">var</span> listeningTo = <span class="keyword">this</span>._listeningTo;
+      <span class="keyword">if</span> (!listeningTo) <span class="keyword">return</span> <span class="keyword">this</span>;
+      <span class="keyword">var</span> remove = !name && !callback;
+      <span class="keyword">if</span> (!callback && <span class="keyword">typeof</span> name === <span class="string">'object'</span>) callback = <span class="keyword">this</span>;
+      <span class="keyword">if</span> (obj) (listeningTo = {})[obj._listenId] = obj;
+      <span class="keyword">for</span> (<span class="keyword">var</span> id <span class="keyword">in</span> listeningTo) {
+        obj = listeningTo[id];
+        obj.off(name, callback, <span class="keyword">this</span>);
+        <span class="keyword">if</span> (remove || _.isEmpty(obj._events)) <span class="keyword">delete</span> <span class="keyword">this</span>._listeningTo[id];
+      }
+      <span class="keyword">return</span> <span class="keyword">this</span>;
+    }
+
+  };
+</pre></td></tr></table></figure>
+
+<p>First, get all the event that listenning to now: </p>
+<pre><code><span class="keyword">var</span> listeningTo = <span class="keyword">this</span>._listeningTo;</code></pre>
+<p>Then defien a <code>listeningTo</code>list get all events that are listened to.<br>define a remove variable and assign expression:<br><code>!name &amp;&amp; !callback</code></p>
+
+    
+    
+    <footer class="meta">
+      
+      
+      
+    </footer>
+    
+  </div>
+  
+</article>
+  
+    <article class="post">
+  
+  <header>
+    
+  
     <h1 class="title"><a href="/blog/2014/05/27/reading-backbone-source-code/">Reading backbone source code</a></h1>
   
 
@@ -875,37 +942,6 @@ trigger: function(<span class="property">name</span>) {
     <footer class="meta">
       
       
-      
-    </footer>
-    
-  </div>
-  
-</article>
-  
-    <article class="post">
-  
-  <header>
-    
-  
-    <h1 class="title"><a href="/blog/2013/11/12/restful-api-design/">RESTful API design</a></h1>
-  
-
-    <time datetime="2013-11-12T10:59:28.000Z">
-  <span class="day">12</span><span class="month">Nov</span>
-</time>
-  </header>
-  <div class="entry-content">
-    
-      <p>I have startied to study RESTful API,Use Django Restful API framework</p>
-
-    
-    
-    <footer class="meta">
-      
-      
-  <div class="tags">
-<a href="/blog/tags/RESTful/">RESTful</a></div>
-
       
     </footer>
     

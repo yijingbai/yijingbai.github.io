@@ -4,12 +4,60 @@
   <subtitle><![CDATA[Full-Stack Developer, Hackathon Lover]]></subtitle>
   <link href="http://yijingbai.github.io/blog/atom.xml" rel="self"/>
   <link href="http://yijingbai.github.io/blog"/>
-  <updated>2014-05-27T13:35:34.680Z</updated>
+  <updated>2014-05-28T15:19:02.699Z</updated>
   <id>http://yijingbai.github.io/blog/</id>
   <author>
     <name><![CDATA[YiJing Bai]]></name>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[Reading Backbone source code(5)]]></title>
+    <link href="http://yijingbai.github.io/blog/2014/05/28/reading-backbone-source-code(5)/"/>
+    <id>http://yijingbai.github.io/blog/2014/05/28/reading-backbone-source-code(5)/</id>
+    <published>2014-05-28T14:42:20.000Z</published>
+    <updated>2014-05-28T15:18:06.000Z</updated>
+    <content type="html"><![CDATA[<p>Today, we talk about stoplistening:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="code"><pre>    <span class="comment">// Tell this object to stop listening to either specific events ... or</span>
+    <span class="comment">// to every object it's currently listening to.</span>
+    stopListening: <span class="keyword">function</span>(obj, name, callback) {
+      <span class="keyword">var</span> listeningTo = <span class="keyword">this</span>._listeningTo;
+      <span class="keyword">if</span> (!listeningTo) <span class="keyword">return</span> <span class="keyword">this</span>;
+      <span class="keyword">var</span> remove = !name && !callback;
+      <span class="keyword">if</span> (!callback && <span class="keyword">typeof</span> name === <span class="string">'object'</span>) callback = <span class="keyword">this</span>;
+      <span class="keyword">if</span> (obj) (listeningTo = {})[obj._listenId] = obj;
+      <span class="keyword">for</span> (<span class="keyword">var</span> id <span class="keyword">in</span> listeningTo) {
+        obj = listeningTo[id];
+        obj.off(name, callback, <span class="keyword">this</span>);
+        <span class="keyword">if</span> (remove || _.isEmpty(obj._events)) <span class="keyword">delete</span> <span class="keyword">this</span>._listeningTo[id];
+      }
+      <span class="keyword">return</span> <span class="keyword">this</span>;
+    }
+
+  };
+</pre></td></tr></table></figure>
+
+<p>First, get all the event that listenning to now: </p>
+<pre><code><span class="keyword">var</span> listeningTo = <span class="keyword">this</span>._listeningTo;</code></pre>
+<p>Then defien a <code>listeningTo</code>list get all events that are listened to.<br>define a remove variable and assign expression:<br><code>!name &amp;&amp; !callback</code></p>
+]]></content>
+  </entry>
   <entry>
     <title type="html"><![CDATA[Reading backbone source code]]></title>
     <link href="http://yijingbai.github.io/blog/2014/05/27/reading-backbone-source-code/"/>
